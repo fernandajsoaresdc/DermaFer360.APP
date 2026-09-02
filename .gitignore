@@ -1,0 +1,24 @@
+# Dependências
+node_modules/
+ 
+# Build de produção
+dist/
+build/
+ 
+# Variáveis de ambiente
+.env*
+!.env.example
+ 
+# Logs de gerenciadores
+npm-debug.log*
+yarn-debug.log*
+ 
+# Cobertura de testes e caches
+coverage/
+.cache/
+ 
+# IDEs e SO
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
