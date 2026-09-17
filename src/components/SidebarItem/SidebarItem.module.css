@@ -1,0 +1,29 @@
+.sidebar_item {
+ display: flex;
+ align-items: center;
+
+ gap: 12px;
+ width: 100%;
+ padding: 12px 15px;
+ text-decoration: none;
+ color: #cfcfcf;
+ border-radius: 6px;
+ transition: 0.2s;
+}
+
+.sidebar_item:hover {
+    background-color: #292929;
+    color: #ffffff;
+}
+
+.icone {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+}
+
+.texto_link {
+    display: flex;
+    font-size: 15px;
+    font-weight: 500;
+}
