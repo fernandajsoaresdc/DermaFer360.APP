@@ -1,0 +1,125 @@
+/* Tela inteira */
+.pagina {
+    width: 100%;
+    height: 100vh;
+    background-image: url("../../assets/telaLogin2.png");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Logo */
+.logoImagem {
+    width: 500px;
+    margin-bottom: 30px;
+}
+
+/* Texto abaixo da logo - Acesso a plataforma */
+.eyebrow {
+    color: #f0e9e9;
+    font-size: 20px;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+/* Mensagem de erro */
+.mensagemErro {
+    color: #f00909;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* Grupo dos campos */
+.campo {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+/* Nome do campo */
+.label {
+    display: block;
+    color: rgb(253, 249, 249);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+/* Campo de texto sem caixa */
+.input {
+    width: 60%;
+    padding: 12px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid silver;
+    color: rgb(252, 245, 245);
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Linha muda de cor quando clicar */
+.input:focus {
+    border-bottom: 2px solid white;
+}
+
+/* Botão Entrar */
+.botaoEntrar {
+    width: 20%;
+    padding: 14px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to right, #C0C0C0, #8A8A8A);
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botaoEntrar:hover {
+    background: linear-gradient(to right, #EAEAEA, #C8C8C8);
+    transform: scale(1.02);
+}
+
+.botaoEntrar:disabled {
+    background: #666;
+    color: #CCC;
+    cursor: not-allowed;
+}
+
+/* Rodapé */
+.rodape {
+    color: #faf6f6;
+    font-size: 13px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+@media(min-width: 768px) and (max-width: 991.98px) {
+    .form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .logoImagem {
+        width: 250px;
+    }
+}
+
+@media(max-width: 575px) {
+    .pagina {
+        padding: 10px;
+    }
+
+    .form {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .logoImagem {
+        width: 180px;
+    }
+}
