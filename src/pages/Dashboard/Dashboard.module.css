@@ -1,0 +1,37 @@
+.dashboard{
+    background-color: #050505;
+    height: 100vh;
+    padding: 35px;
+    color: white;
+}
+
+.titulo{
+    margin-bottom: 35px;
+}
+
+.titulo h1{
+    font-size: 34px;
+    color: #ECECEC;
+}
+
+.titulo span{
+    color: #AFAFAF;
+    font-size: 16PX;
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 25px;
+}
+
+.graficos{
+    margin-top: 35px;
+}
+
+.informacoes{
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 25px;
+    margin-top: 35px;
+}

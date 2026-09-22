@@ -1,31 +1,75 @@
-import axios from 'axios';
 
-const apiService = axios.create ({
-    baseURL: "http://localhost:5026"
-});
+import  HTTPClient  from "./ClientApiService"
 
-//Injeta o token automaticamente em toda requisição, se existir
 
-HTTPClient.interceptors.request.use((config) => {
-    const token = localStorage.getItem("token");
+const ProdutoService = {
+    async criarAsync(nome, descricao, precoCusto, precoVenda, usuarioId) {
+        try {
+            const produtoCriar = {
+                Nome: nome,
+                Descricao: descricao,
+                PrecoCusto: Number(precoCusto),
+                PrecoVenda: Number(precoVenda),
+                UsuarioId: parseInt(usuarioId)
+            };
+            const resposta = await HTTPClient.post("/Produto/Criar", produtoCriar);
+            return resposta.data;
+        }
+        catch (error) {
+            console.error("Erro ao criar produto.", error);
+            throw error;
+        }
+    },
 
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+    async obterAsync(produtoId) {
+        try {
+            const resposta = await HTTPClient.get(`/Produto/Obter/${produtoId}`);
+            return resposta.data;
+        }
+        catch (error) {
+            console.error("Erro ao obter produto.", error)
+            throw error;
+        }
+    },
+
+    async atualizarAsync(id, nome, precoCusto, precoVenda, ativo) {
+        try {
+            const produto = {
+                Id: id,
+                Nome: nome,
+                PrecoCusto: Number(precoCusto),
+                PrecoVenda: Number(precoVenda),
+                Ativo: ativo
+            };
+            const resposta = await HTTPClient.put("/Produto/Atualizar", produto);
+            return resposta.data;
+        }
+        catch (error) {
+            console.error("Erro ao atualizar produto.", error);
+            throw error;
+        }
+    },
+
+    async deletarAsync(produtoId) {
+        try {
+            const resposta = await HTTPClient.delete(`/Produto/Deletar/${produtoId}`);
+            return resposta.data;
+        }
+        catch (error) {
+            console.error("Erro ao deletar produto.", error);
+            throw error;
+        }
+    },
+
+    async listarAsync() {
+        try {
+            const resposta = await HTTPClient.get("/Produto/Listar");
+            return resposta.data;
+        }
+        catch (error) {
+            console.error("Erro ao listar produtos.", error);
+            throw error;
+        }
     }
-    return config;
-});
-
-//Se o token for inválido/expirado (401), desloga e volta para o login
-
-HTTPClient.interceptors.response.use((response) => response, (error) => {
-
-    if (error.response?.status === 401) {
-        localStorage.removeItem("token");
-        window.location.href = "/";
-    }
-    return Promise.reject(error);
 }
-);
-
-
-export default apiService;
+export default ProdutoService;

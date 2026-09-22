@@ -1,18 +1,18 @@
 
-import { HTTPClient } from "./ClientApiService"
+import  HTTPClient  from "./ClientApiService"
 
 
 
 const DespesaService = {
     async criarAsync(descricao, valor, dataDespesa, usuarioId ) {
         try {
-            const despesacriar = {
+            const despesaCriar = {
                 Descricao: descricao,
                 Valor: Number(valor),
                 DataDespesa: dataDespesa,
                 UsuarioId: parseInt(usuarioId)
             };
-            const resposta = await HTTPClient.post(`/Despesa/Criar`, despesacriar);
+            const resposta = await HTTPClient.post("/Despesa/Criar", despesaCriar);
             return resposta.data;
         }
         catch (error) {
@@ -21,7 +21,7 @@ const DespesaService = {
         }
     },
 
-    async ObterAsync(despesaId) {
+    async obterAsync(despesaId) {
         try {
             const resposta = await HTTPClient.get(`/Despesa/Obter/${despesaId}`);
             return resposta.data;
@@ -42,7 +42,7 @@ const DespesaService = {
                 UsuarioId: parseInt(usuarioId),
                 Ativo: ativo
             };
-            const resposta = await HTTPClient.put(`/Despesa/Atualizar`, despesa);
+            const resposta = await HTTPClient.put("/Despesa/Atualizar", despesa);
             return resposta.data;
         }
         catch (error) {
@@ -64,11 +64,12 @@ const DespesaService = {
 
     async listarAsync() {
         try {
-            const resposta = await HTTPClient.get(`/Despesa/Listar`);
+            const resposta = await HTTPClient.get("/Despesa/Listar");
             return resposta.data;
         }
         catch (error) {
             console.error("Erro ao listar as despesas.", error);
+            throw error;
         }
     }
 }

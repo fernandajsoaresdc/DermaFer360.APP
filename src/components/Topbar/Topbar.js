@@ -1,8 +1,8 @@
-import style from "./TopBar.module.css";
+import style from "./Topbar.module.css";
 import { MdLogout, MdAccountCircle } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-export function TopBar() {
+export function Topbar() {
 
     const navigate = useNavigate();
 

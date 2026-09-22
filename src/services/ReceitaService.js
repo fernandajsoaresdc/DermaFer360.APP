@@ -1,19 +1,19 @@
 
-import { HTTPClient } from "./ClientApiService"
+import  HTTPClient  from "./ClientApiService"
 
 
 
 const ReceitaService = {
     async criarAsync(produtoId, quantidade, precoUnitario, dataReceita, usuarioId ) {
         try {
-            const receitacriar = {
+            const receitaCriar = {
                 ProdutoId: parseInt(produtoId),
                 Quantidade: Number(quantidade),
-                precoUnitario: Number(precoUnitario),
+                PrecoUnitario: Number(precoUnitario),
                 DataReceita: dataReceita,
                 UsuarioId: parseInt(usuarioId)
             };
-            const resposta = await HTTPClient.post(`/Receita/Criar`, receitacriar);
+            const resposta = await HTTPClient.post("/Receita/Criar", receitaCriar);
             return resposta.data;
         }
         catch (error) {
@@ -22,7 +22,7 @@ const ReceitaService = {
         }
     },
 
-    async ObterAsync(receitaId) {
+    async obterAsync(receitaId) {
         try {
             const resposta = await HTTPClient.get(`/Receita/Obter/${receitaId}`);
             return resposta.data;
@@ -44,7 +44,7 @@ const ReceitaService = {
                 UsuarioId: parseInt(usuarioId),
                 Ativo: ativo
             };
-            const resposta = await HTTPClient.put(`/Receita/Atualizar`, receita);
+            const resposta = await HTTPClient.put("/Receita/Atualizar", receita);
             return resposta.data;
         }
         catch (error) {
@@ -66,11 +66,12 @@ const ReceitaService = {
 
     async listarAsync() {
         try {
-            const resposta = await HTTPClient.get(`/Receita/Listar`);
+            const resposta = await HTTPClient.get("/Receita/Lista");
             return resposta.data;
         }
         catch (error) {
             console.error("Erro ao listar as receitas.", error);
+            throw error;
         }
     }
 }

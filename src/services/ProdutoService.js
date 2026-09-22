@@ -1,19 +1,18 @@
 
-import { HTTPClient } from "./ClientApiService"
-
+import  HTTPClient  from "./ClientApiService"
 
 
 const ProdutoService = {
     async criarAsync(nome, descricao, precoCusto, precoVenda, usuarioId) {
         try {
-            const produtocriar = {
+            const produtoCriar = {
                 Nome: nome,
                 Descricao: descricao,
-                PrecoCusto: number(precoCusto),
-                PrecoVenda: number(precoVenda),
+                PrecoCusto: Number(precoCusto),
+                PrecoVenda: Number(precoVenda),
                 UsuarioId: parseInt(usuarioId)
             };
-            const resposta = await HTTPClient.post(`/Produto/Criar`, produtocriar);
+            const resposta = await HTTPClient.post("/Produto/Criar", produtoCriar);
             return resposta.data;
         }
         catch (error) {
@@ -22,7 +21,7 @@ const ProdutoService = {
         }
     },
 
-    async ObterAsync(produtoId) {
+    async obterAsync(produtoId) {
         try {
             const resposta = await HTTPClient.get(`/Produto/Obter/${produtoId}`);
             return resposta.data;
@@ -38,11 +37,11 @@ const ProdutoService = {
             const produto = {
                 Id: id,
                 Nome: nome,
-                PrecoCusto: number(precoCusto),
-                PrecoVenda: number(precoVenda),
+                PrecoCusto: Number(precoCusto),
+                PrecoVenda: Number(precoVenda),
                 Ativo: ativo
             };
-            const resposta = await HTTPClient.put(`/Produto/Atualizar`, produto);
+            const resposta = await HTTPClient.put("/Produto/Atualizar", produto);
             return resposta.data;
         }
         catch (error) {
@@ -64,11 +63,12 @@ const ProdutoService = {
 
     async listarAsync() {
         try {
-            const resposta = await HTTPClient.get(`/Produto/Listar`);
+            const resposta = await HTTPClient.get("/Produto/Listar");
             return resposta.data;
         }
         catch (error) {
             console.error("Erro ao listar produtos.", error);
+            throw error;
         }
     }
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
-import DermaFer360 from "../../assets/DermaFer360.png";
+import DermaFer360 from "../../assets/DermaFer360.2.png";
 import AutenticacaoService from "../../services/AutenticacaoService";
 import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
@@ -55,7 +55,7 @@ export function Login() {
                 <form className={styles.formulario} onSubmit={handleEntrar}>
 
 
-                    <img src={DermaFer360} alt=" Logo DermaFer360" className={styles.logoImagem} />
+                    <img src={DermaFer360} alt=" Logo DermaFer360.2" className={styles.logoImagem} />
 
                    
 

@@ -1,0 +1,57 @@
+.card{
+    background-color: linear-gradient(180deg, #171717 0%, #0A0A0A 100%);
+    border: 1PX solid #2F2F2F;
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+}
+
+.card h3{
+    color: #F2F2F2;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.listaReceitas{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.itemReceita{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: 14px;
+    background-color: #1A1A1A;
+    border: 1px solid #2C2C2C;
+    transition: 0.3s;
+}
+
+.itemReceita:hover {
+    background-color: #232323;
+    border-color: silver;
+}
+
+.informacoes {
+    display: flex;
+    flex-direction: column;
+}
+
+.informacoes strong{
+    color: #FFFFFF;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.informacoes span{
+    color: #AFAFAF;
+    font-size: 13px;
+}
+
+.valor{
+    color: #E8E8E8;
+    font-size: 18px;
+    font-weight: bold;
+}

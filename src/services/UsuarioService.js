@@ -1,16 +1,16 @@
 
-import { HTTPClient } from "./ClientApiService"
+import  HTTPClient  from "./ClientApiService"
 
 const UsuarioService = {
     async criarAsync(nome, email, senha, cargo) {
         try {
-            const usuariocriar = {
+            const usuarioCriar = {
                 Nome: nome,
                 Email: email,
                 Senha: senha,
                 Cargo: parseInt(cargo)
             };
-            const resposta = await HTTPClient.post(`/Usuario/Criar`, usuariocriar);
+            const resposta = await HTTPClient.post("/Usuario/Criar", usuarioCriar);
             return resposta.data;
         }
         catch (error) {
@@ -19,7 +19,7 @@ const UsuarioService = {
         }
     },
 
-    async ObterAsync(usuarioId) {
+    async obterAsync(usuarioId) {
         try {
             const resposta = await HTTPClient.get(`/Usuario/Obter/${usuarioId}`);
             return resposta.data;
@@ -39,7 +39,7 @@ const UsuarioService = {
                 Cargo: parseInt(cargo),
                 Ativo: ativo
             };
-            const resposta = await HTTPClient.put(`/Usuario/Atualizar`, usuario);
+            const resposta = await HTTPClient.put("/Usuario/Atualizar", usuario);
             return resposta.data;
         }
         catch (error) {
@@ -53,9 +53,9 @@ const UsuarioService = {
             const usuarioAlterarSenha = {
                 Id: id,
                 Senha: senha,
-                senhaAntiga: senhaAntiga
+                SenhaAntiga: senhaAntiga
             };
-            const resposta = await HTTPClient.put(`/Usuario/AlterarSenha`, usuarioAlterarSenha);
+            const resposta = await HTTPClient.put("/Usuario/AlterarSenha", usuarioAlterarSenha);
             return resposta.data;
         }
         catch (error) {
@@ -78,19 +78,20 @@ const UsuarioService = {
 
     async listarAsync() {
         try {
-            const resposta = await HTTPClient.get(`/Usuario/Listar`);
+            const resposta = await HTTPClient.get("/Usuario/Listar");
             return resposta.data;
         }
         catch (error) {
             console.error("Erro ao listar usuários.", error);
+            throw error;
         }
     },
 
     async listarCargosAsync() {
         try {
 
-            const response = await HTTPClient.get("/Usuario/ListarCargos");
-            return response.data;
+            const resposta = await HTTPClient.get("/Usuario/ListarCargos");
+            return resposta.data;
         } 
         catch (error) {
             console.error("Erro ao listar cargos:", error);

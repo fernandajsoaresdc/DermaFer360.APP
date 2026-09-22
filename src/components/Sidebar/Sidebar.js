@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import style from './Sidebar.module.css';
 import { MdOutlineDashboard, MdGroup, MdInventory2, MdAttachMoney, MdMoneyOff, MdAssessment } from 'react-icons/md';
-import SidebarItem from '../SidebarItem/SidebarItem';
+import { SidebarItem } from "../SidebarItem/SidebarItem";
 import Logo from '../../assets/DermaFer360.png';
 
 export function Sidebar({ children }) {
