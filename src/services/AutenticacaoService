@@ -8,7 +8,7 @@ const AutenticacaoService = {
                 Senha: senha
             };
 
-            const response = await HTTPClient.post(`Autenticacao/Login`, loginCriar);
+            const response = await HTTPClient.post("/Autenticacao/Login", loginCriar);
             return response.data;
         }
         catch (error) {

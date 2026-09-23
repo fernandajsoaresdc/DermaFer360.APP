@@ -2,8 +2,7 @@ import style from "./Topbar.module.css";
 import { MdLogout, MdAccountCircle } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-export function Topbar() {
-
+export function Topbar({ children }) {
     const navigate = useNavigate();
 
     const logout = () => {
@@ -15,30 +14,30 @@ export function Topbar() {
     const usuario = localStorage.getItem("usuario") || "Administrador Financeiro";
 
     return (
-        <header className={style.topbar}>
+        <>
+            <header className={style.topbar}>
+                <div className={style.informacoesEmpresa}>
 
-            <div className={style.informacoesEmpresa}>
+                    <h1>DermaFer360</h1>
 
-                <h1>DermaFer360</h1>
+                    <span>Departamento Financeiro - Dermocosméticos</span>
+                </div>
 
-                <span>Departamento Financeiro - Dermocosméticos</span>
+                <div className={style.usuarioArea}>
 
-            </div>
+                    <MdAccountCircle className={style.usuarioIcone} />
 
-            <div className={style.usuarioArea}><MdAccountCircle className={style.usuarioIcone}/>
+                    <span className={style.usuarioNome}>{usuario}</span>
 
-                <span className={style.usuarioNome}>{usuario}</span>
+                    <button
+                        className={style.botaoLogout} onClick={logout}>
+                        <MdLogout />
+                        Sair
+                    </button>
+                </div>
+            </header>
 
-                <button
-                    className={style.botaoLogout}
-                    onClick={logout}
-                >
-                    <MdLogout />
-                    Sair
-                </button>
-
-            </div>
-
-        </header>
+            {children}
+        </>
     );
 }

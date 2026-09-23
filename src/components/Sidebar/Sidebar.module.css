@@ -13,7 +13,7 @@
     border-right: 1px solid #3a3a3a;
 }
 
-/* Área do logo */
+
 .sidebar_header {
     display: flex;
     flex-direction: column;
@@ -21,7 +21,6 @@
     margin-bottom: 25px;
 }
 
-/* Logo DermaFer360 */
 .logo {
     width: 170px;
     max-height: 80px;
@@ -29,7 +28,7 @@
     cursor: pointer;
 }
 
-/* Linha abaixo do logo */
+
 .linha {
     width: 100%;
     border: none;
@@ -37,13 +36,13 @@
     margin-top: 20px;
 }
 
-/* Corpo dos itens */
+
 .sidebar_corpo {
     width: 100%;
     margin-bottom: 8px;
 }
 
-/* Área onde o conteúdo da página aparece */
+
 .pagina_conteudo {
     margin-left: 240px;
     min-height: 100vh;
