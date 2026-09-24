@@ -12,43 +12,53 @@ import { BsCashCoin, BsCash, BsFillClipboardCheckFill, BsGraphUp } from "react-i
 import style from "./Dashboard.module.css";
 
 export function Dashboard() {
+
+    const hoje = new Date();
+    const primeiroDiaMes = new Date(hoje.getFullYear(), hoje.getMonth, 1)
+        .toISOString()
+        .split("T")[0];
+
+    const ultimoDiaMes = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0)
+        .toISOString()
+        .split("T")[0];
+
+    const [dataInicial, setDataInicial] = useState(primeiroDiaMes);
+    const [dataFinal, setDataFinal] = useState(ultimoDiaMes);
+
     const [receitaTotal, setReceitaTotal] = useState(0);
     const [despesaTotal, setDespesaTotal] = useState(0);
     const [lucro, setlucro] = useState(0);
     const [estoque, setEstoque] = useState(0);
 
     const [grafico, setGrafico] = useState([]);
-    const [produtos, setProdutos] = useState([]);
     const [ultimasReceitas, setUltimasReceitas] = useState([]);
 
     useEffect(() => {
 
         async function carregarDashboard() {
 
-            const receita = await ReceitaService.listarAsync();
-            const despesa = await DespesaService.listarAsync();
-            const produtosEstoque = await ProdutoService.listarAsync();
-            const relatorio = await RelatorioService.dashboard();
+            try {
+                const dashboard = await RelatorioService.dashboard(dataInicial, dataFinal);
 
-            const totalReceitas = receitas.reduce(
-                (total, item) => total + item.valorTotal, 0);
+                setReceitaTotal(dashboard.receitaTotal);
+                setDespesaTotal(dashboard.despesaTotal);
+                setlucro(dashboard.lucro);
+                setEstoque(dashboard.produtosEstoque);
 
-            const totalDespesas = despesas.reduce(
-                (total, item) => total + item.valor, 0);
-            
-
-            setReceitaTotal(totalReceitas);
-            setDespesaTotal(totalDespesas);
-            setlucro(totalReceitas - totalDespesas);
-            setEstoque(produtosEstoque.lenght);
-
-            setGrafico(relatorio.GraficoFinanceiro || []);
-            setUltimasReceitas(relatorio.ultimasReceitas || []);
+                setGrafico(dashboard.GraficoFinanceiro);
+                setUltimasReceitas(dashboard.ultimasReceitas)
+            }
+            catch(error)
+            {
+                console.error("Erro ao carregar a Dashboard.", error);
+            }
         }
-
+        
         carregarDashboard();
-
-    }, []);
+    });
+       
+       
+           
 
     return (
         <Sidebar>
@@ -58,6 +68,33 @@ export function Dashboard() {
                 <div className={style.titulo}>
                     <h1>Dashboard Financeira</h1>
                     <span>Departamento Financeiro - DermaFer360</span>
+                </div>
+
+                <div className={style.filtroDatas}>
+                    <div>
+                        <label>Data Inicial</label>
+
+                        <input
+                        type="date"
+                        value={dataInicial}
+                        onChange={(e) => setDataInicial(e.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <label>Data Final</label>
+
+                        <input
+                        type="date"
+                        value={dataFinal}
+                        onChange={(e) => setDataFinal(e.target.value)}
+                        />
+                    </div>
+
+                    <button className={style.botaoFiltrarData} onClick={carregarDashboard}
+                    >
+                        Filtrar Data
+                    </button>
                 </div>
 
                 <div className={style.cards}>
@@ -113,5 +150,5 @@ export function Dashboard() {
                 </div>
             </div>
         </Sidebar>
-    );
+    )
 }

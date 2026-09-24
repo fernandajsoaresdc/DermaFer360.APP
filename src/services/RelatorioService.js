@@ -1,12 +1,15 @@
+import { useParams } from "react-router-dom";
 import HTTPClient from "./ClientApiService";
 
 const RelatorioService = {
 
-    async dashboard() {
+    async dashboard(dataInicial,dataFinal) {
         try {
-            const resposta = await HTTPClient.get("/Relatorio/Dashboard");
+            const resposta = await HTTPClient.get("/Relatorio/Dashboard", {params:{dataInicial, dataFinal}});
             return resposta.data;
-        } catch (error) {
+        } 
+        catch (error) 
+        {
             console.error("Erro ao carregar dashboard.", error);
             throw error;
         }

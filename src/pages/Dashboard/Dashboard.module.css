@@ -19,6 +19,48 @@
     font-size: 16PX;
 }
 
+.filtroDatas{
+    display:flex;
+    gap:20px;
+    align-items:end;
+    margin:25px 0;
+    flex-wrap:wrap;
+}
+
+.filtroDatas div{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.filtroDatas label{
+    color:#D6D6D6;
+    font-size:14px;
+}
+
+.filtroDatas input{
+    width:180px;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #555;
+    background:#2C2C2C;
+    color:white;
+}
+
+.botaoFiltrar{
+    padding:10px 24px;
+    border:none;
+    border-radius:8px;
+    background:#8C8C8C;
+    color:white;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.botaoFiltrar:hover{
+    background:#A5A5A5;
+}
+
 .cards{
     display: grid;
     grid-template-columns: repeat(4,1fr);

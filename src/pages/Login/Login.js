@@ -28,6 +28,8 @@ export function Login() {
         try {
             const resposta = await AutenticacaoService.LoginAsync(email, senha);
             localStorage.setItem("token", resposta.token);
+            localStorage.setItem("usuario", resposta.nome);
+            localStorage.setItem("cargo",resposta.cargo);
 
             setMostrarModal(true);
 
