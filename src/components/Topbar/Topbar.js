@@ -15,12 +15,10 @@ export function Topbar({ children }) {
 
     return (
         <>
-            <header className={style.topbar}>
+            <div className={style.topbar}>
                 <div className={style.informacoesEmpresa}>
 
-                    <h1>DermaFer360</h1>
-
-                    <span>Departamento Financeiro - Dermocosméticos</span>
+                    <span>Departamento Financeiro</span>
                 </div>
 
                 <div className={style.usuarioArea}>
@@ -35,7 +33,7 @@ export function Topbar({ children }) {
                         Sair
                     </button>
                 </div>
-            </header>
+            </div>
 
             {children}
         </>

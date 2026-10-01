@@ -1,14 +1,14 @@
 .card{
     background-color: linear-gradient(180deg,#151515,#0B0B0B);
-    border: 1PX solid#2B2B2B;
+    border: 2PX solid#3a3939;
     border-radius: 20px;
     padding: 25px;
     box-shadow: 0 0 20px rgba(192,192,192,.08);
+    transition: .3s;;
 }
 
 .card:hover{
     transform: translateY(-4px);
-    transition: .3s;
     box-shadow: 0 0 25px rgba(192,192,192,.20);
 }
 
@@ -26,18 +26,3 @@
     color: #FFFFFF;
 }
 
-.receita{
-    border-left: 5px solid #C0C0C0;
-}
-
-.despesa{
-    border-left: 5px solid #8A8A8A;
-}
-
-.lucro{
-    border-left: 5px solid #E6E6E6;
-}
-
-.estoque{
-    border-left: 5px solid #AFAFAF;
-}

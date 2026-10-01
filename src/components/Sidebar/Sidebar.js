@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import style from './Sidebar.module.css';
 import { MdOutlineDashboard, MdGroup, MdInventory2, MdAttachMoney, MdMoneyOff, MdAssessment } from 'react-icons/md';
 import { SidebarItem } from "../SidebarItem/SidebarItem";
-import Logo from '../../assets/DermaFer360.png';
+import Logo from '../../assets/DermaFer360.2.png';
 
 export function Sidebar({ children }) {
 
@@ -15,7 +15,7 @@ export function Sidebar({ children }) {
                 <div className={style.sidebar_header}>
 
                     <Link to="/dashboard">
-                        <img src={Logo} alt="Logo-DermaFer360" className={style.logo} /></Link>
+                        <img src={Logo} alt="Logo-DermaFer360.2" className={style.logo} /></Link>
                     <hr className={style.linha} />
                 </div>
 

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 import DermaFer360 from "../../assets/DermaFer360.2.png";
 import AutenticacaoService from "../../services/AutenticacaoService";
-import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 
 
@@ -22,25 +21,28 @@ export function Login() {
 
     const handleEntrar = async (e) => {
         e.preventDefault();
-        setErro('');
+        setErro("");
         setCarregando(true);
 
         try {
             const resposta = await AutenticacaoService.LoginAsync(email, senha);
+
             localStorage.setItem("token", resposta.token);
             localStorage.setItem("usuario", resposta.nome);
-            localStorage.setItem("cargo",resposta.cargo);
+            localStorage.setItem("cargo", resposta.cargo);
 
             setMostrarModal(true);
 
             setTimeout(() => {
                 setMostrarModal(false);
-                navigate('/dashboard')
+                navigate("/dashboard")
             }, 1300);
 
         } catch (error) {
+
             console.error(error)
             setErro('E-mail ou senha inválidos');
+
         }
         finally {
             setCarregando(false);
@@ -59,7 +61,7 @@ export function Login() {
 
                     <img src={DermaFer360} alt=" Logo DermaFer360.2" className={styles.logoImagem} />
 
-                   
+
 
                     <p className={styles.eyebrow}>Acesso à plataforma- Setor Financeiro</p>
 

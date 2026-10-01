@@ -1,70 +1,72 @@
-.card{
-    background-color: linear-gradient(180deg, #171717 0%, #0A0A0A 100%);
-    border: 1px solid #2F2F2F;
-    border-radius: 24px;
-    padding: 25px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+.card {
+    width: 100%;
+    box-sizing: border-box;
+    background: #e6e0e0;
+    border: 2px solid #383636;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
-    .card h3{
-        color: #F1F1F1;
-        font-size: 22PX;
-        font-weight: 600;
-        margin-bottom: 25PX;
-        letter-spacing: 0.5px;
+.card h3 {
+    margin: 0 0 20px;
+    color: #1a1919;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.containerGrafico {
+    width: 100%;
+    height: 320px;
+    box-sizing: border-box;
+    padding: 10px;
+    background: #fafafa;
+    border: 1px solid #ededed;
+    border-radius: 12px;
+}
+
+.legenda {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 18px;
+}
+
+.itemLegenda {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1f1d1d;
+    font-size: 13px;
+}
+
+.corReceita,
+.corDespesa {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.corReceita {
+    background: #1a1919;
+}
+
+.corDespesa {
+    background: #8b8989;
+}
+
+
+@media (max-width: 768px) {
+
+    .card {
+        padding: 18px;
     }
 
-    .containerGrafico{
-        width: 100%;
-        height: 320px;
-        background-color: linear-gradient(180deg, #111111 0%, #1A1A1A 100%);
-        border: 1px solid #2D2D2D;
-        border-radius: 18px;
-        padding: 15px;
+    .containerGrafico {
+        height: 260px;
     }
 
-    .legenda{
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin-top: 18px;
+    .legenda {
+        gap: 15px;
     }
-
-    .itemLegenda{
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: #D7D7D7;
-        font-size: 14px;
-    }
-
-    .corReceita, .corDespesa {
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-    }
-
-    .corReceira{
-        background-color: linear-gradient(180deg, #F5F5F5, #AFAFAF);
-    }
-
-    .corDespesa{
-        background-color: linear-gradient(180deg, #6E6E6E, #2E2E2E);
-    }
-
-    @media(max-widht: 768px) {
-
-        .card{
-            padding: 18px;
-        }
-
-        .containerGrafico{
-            height: 260px;
-        }
-
-        .legenda{
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-    }
+}

@@ -1,0 +1,119 @@
+.pagina_conteudo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.pagina_cabecalho h3 {
+    margin: 20px;
+    font-size: 24px;
+    color: #1f2937;
+}
+
+.pagina_cabecalho span {
+    font-size: 14px;
+    margin: 20px;
+    color: #6b7280;
+}
+
+.botao_novo {
+    background-color: #a9aaac;
+    color: black;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 20px;
+}
+
+.botao_novo:hover {
+    background-color: #dee0e4;
+}
+
+.pesquisa {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #fff;
+    border: 1px solid #393a3b;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 30px;
+    margin: 20px;
+    max-width: 400px;
+}
+
+.pesquisa input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+}
+
+.tabela {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.tabela table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela th {
+    text-align: left;
+    padding: 12px 16px;
+    background-color: #f3f4f6;
+    color: #374151;
+    font-size: 14px;
+}
+
+.tabela td {
+    padding: 12px 16px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.tabela tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.botao_editar, 
+.botao_restaurar,
+.botao_excluir {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 8px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.botao_editar {
+    background-color: #dbeafe;
+    color: #2563eb;
+}
+
+.botao_excluir {
+    background-color: #fee2e2;
+    color: rgb(192, 110, 110);
+}
+
+.botao_restaurar {
+    background-color: #dcfce7;
+    color: #789c85;
+}
+
+.botao_restaurar:hover {
+    background-color: #bbf7d0;
+}
+
