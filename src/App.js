@@ -28,7 +28,7 @@ function App() {
                 <Route path="/dashboard" element={<RotaPrivada><Dashboard /></RotaPrivada>} />
                 <Route path="/usuarios" element={<RotaPrivada><Usuarios/></RotaPrivada>}/>
                 <Route path="/usuario/novo" element={<RotaPrivada><NovoUsuario/></RotaPrivada>}/>
-                <Route path="/usuario/editar" element={<RotaPrivada><EditarUsuario/></RotaPrivada>}/>
+                <Route path="/usuario/editar/:id" element={<RotaPrivada><EditarUsuario/></RotaPrivada>}/>
                 <Route path="/produtos" element={<RotaPrivada><Produtos/></RotaPrivada>}/>
                 <Route path="/produto/novo" element={<RotaPrivada><NovoProduto/></RotaPrivada>}/>
                 <Route path="/produto/editar"element={<RotaPrivada><EditarProduto/></RotaPrivada>}/>

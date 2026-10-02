@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { MdArrowBack } from "react-router-dom";
+import { MdArrowBack } from "react-icons/md";
 import style from "./NovoUsuario.module.css";
 import { Sidebar } from "../../components/Sidebar/Sidebar";
 import { Topbar } from "../../components/Topbar/Topbar";
@@ -13,13 +13,14 @@ export function NovoUsuario() {
 
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
-    const [senha, setSenha] = ("");
+    const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
     const [cargo, setCargo] = useState("");
-    const [cargos, setCargos] = useState("");
+    const [cargos, setCargos] = useState([]);
     const [erro, setErro] = useState("");
-    const [salvando, setSalvando] = useState("");
-    const [mostrarModalSucesso, setMostrarModalSucesso] = useState("");
+    const [salvando, setSalvando] = useState(false);
+    const [mostrarModalSucesso, setMostrarModalSucesso] = useState(false);
+
 
     useEffect(() => {
         const carregarCargos = async () => {
@@ -113,7 +114,7 @@ export function NovoUsuario() {
                             onChange={(e) => setCargo(e.target.value)}
                         >
                             <option value="">Selecione o cargo</option>
-                            {cargos.map((c) => (<option key={c.id}>
+                            {cargos.map((c) => (<option key={c.id} value={c.id}>
                                 {c.nome}
                             </option>
                             ))}
@@ -151,7 +152,7 @@ export function NovoUsuario() {
                         </Link>
 
                         <button type="submit" className={style.botao_salvar} disabled={salvando}>
-                            {salvando ? "Salvando...": "Salvar"}
+                            {salvando ? "Salvando..." : "Salvar"}
                         </button>
                     </div>
                 </form>
