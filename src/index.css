@@ -15,3 +15,17 @@ input,
 select {
     font-family: inherit;
 }
+
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+th:last-child {
+    width: 130px;
+}
+
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

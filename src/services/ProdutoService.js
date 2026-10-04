@@ -3,14 +3,15 @@ import  HTTPClient  from "./ClientApiService"
 
 
 const ProdutoService = {
-    async criarAsync(nome, descricao, precoCusto, precoVenda, usuarioId) {
+    async criarAsync(nome, descricao, precoCusto, precoVenda, usuarioId, estoque) {
         try {
             const produtoCriar = {
                 Nome: nome,
                 Descricao: descricao,
                 PrecoCusto: Number(precoCusto),
                 PrecoVenda: Number(precoVenda),
-                UsuarioId: parseInt(usuarioId)
+                UsuarioId: parseInt(usuarioId),
+                Estoque: parseInt(estoque)
             };
             const resposta = await HTTPClient.post("/Produto/Criar", produtoCriar);
             return resposta.data;

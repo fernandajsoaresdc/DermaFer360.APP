@@ -175,8 +175,7 @@ export function Usuarios() {
 
                                     <td>
 
-                                        <Link
-                                            to={`/usuario/editar/${usuario.id}`} className={style.botao_editar}
+                                        <Link to={`/usuario/editar/${usuario.id}`} className={style.botao_editar}
                                             title="Editar"
                                             aria-label="Editar usuário"
                                         >
