@@ -66,7 +66,7 @@ const ReceitaService = {
 
     async listarAsync() {
         try {
-            const resposta = await HTTPClient.get("/Receita/Lista");
+            const resposta = await HTTPClient.get("/Receita/Listar");
             return resposta.data;
         }
         catch (error) {

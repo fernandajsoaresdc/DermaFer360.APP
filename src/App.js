@@ -31,13 +31,13 @@ function App() {
                 <Route path="/usuario/editar/:id" element={<RotaPrivada><EditarUsuario/></RotaPrivada>}/>
                 <Route path="/produtos" element={<RotaPrivada><Produtos/></RotaPrivada>}/>
                 <Route path="/produto/novo" element={<RotaPrivada><NovoProduto/></RotaPrivada>}/>
-                <Route path="/produto/editar"element={<RotaPrivada><EditarProduto/></RotaPrivada>}/>
+                <Route path="/produto/editar/:id"element={<RotaPrivada><EditarProduto/></RotaPrivada>}/>
                 <Route path="/receitas" element={<RotaPrivada><Receitas/></RotaPrivada>}/>
                 <Route path="/receita/novo" element={<RotaPrivada><NovaReceita/></RotaPrivada>}/>
-                <Route path="/receita/editar" element={<RotaPrivada><EditarReceita/></RotaPrivada>}/>
+                <Route path="/receita/editar/:id" element={<RotaPrivada><EditarReceita/></RotaPrivada>}/>
                 <Route path="/despesas" element={<RotaPrivada><Despesas/></RotaPrivada>}/>
                 <Route path="/despesa/novo" element={<RotaPrivada><NovaDespesa/></RotaPrivada>}/>
-                <Route path="/despesa/editar" element={<RotaPrivada><EditarDespesa/></RotaPrivada>}/>
+                <Route path="/despesa/editar/:id" element={<RotaPrivada><EditarDespesa/></RotaPrivada>}/>
                 <Route path="/relatorio-financeiro" element={<RotaPrivada><RelatorioFinanceiro/></RotaPrivada>}/>
             </Routes>
 

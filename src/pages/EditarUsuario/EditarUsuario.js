@@ -37,13 +37,8 @@ export function EditarUsuario() {
                 setAtivo(usuario.ativo);
             }
             catch (error) {
-                console.error("Erro ao carregar usuário.", error);
 
-                if(error.resposta?.status === 400) {
-                    setNaoEncontrado(true);
-                } else{
-                    setErro("Não foi possivel carregar o usuário.")
-                }
+                console.error("Erro ao carregar usuário.", error);
             }
             finally {
                 setCarregando(false);
@@ -51,6 +46,7 @@ export function EditarUsuario() {
         };
 
         carregarDados();
+        
     }, [id]);
 
     const handleSalvar = async (e) => {

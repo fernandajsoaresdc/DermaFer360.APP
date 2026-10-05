@@ -33,13 +33,15 @@ const ProdutoService = {
         }
     },
 
-    async atualizarAsync(id, nome, precoCusto, precoVenda, ativo) {
+    async atualizarAsync(id, nome,descricao, precoCusto, precoVenda, estoque, ativo) {
         try {
             const produto = {
                 Id: id,
                 Nome: nome,
+                Descricao: descricao,
                 PrecoCusto: Number(precoCusto),
                 PrecoVenda: Number(precoVenda),
+                Estoque: parseInt(estoque),
                 Ativo: ativo
             };
             const resposta = await HTTPClient.put("/Produto/Atualizar", produto);

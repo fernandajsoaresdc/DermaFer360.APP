@@ -1,4 +1,4 @@
-/* Cabeçalho: título à esquerda, botão à direita */
+
 .pagina_conteudo {
     display: flex;
     justify-content: space-between;
@@ -32,7 +32,7 @@
     background-color: #dee0e4;
 }
 
-/* Campo de busca */
+
 .pesquisa {
     display: flex;
     align-items: center;
@@ -93,21 +93,21 @@
     background-color: #f9fafb;
 }
 
-/* Colunas de valores alinhadas à direita */
+
 .tabela th.numero,
 .tabela td.numero {
     text-align: right;
     white-space: nowrap;
 }
 
-/* Linha de lista vazia */
+
 .tabela td.vazio {
     text-align: center;
     color: #6b7280;
     padding: 24px;
 }
 
-/* Botões da coluna Ações */
+
 .botao_editar,
 .botao_excluir {
     display: inline-flex;
@@ -134,7 +134,7 @@
 
 .botao_excluir {
     background-color: #fee2e2;
-    color: #dc2626;
+    color: rgb(192, 110, 110);
 }
 
 .botao_excluir:hover {
