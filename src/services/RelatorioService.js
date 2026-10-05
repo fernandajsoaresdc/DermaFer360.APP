@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import HTTPClient from "./ClientApiService";
 
 const RelatorioService = {

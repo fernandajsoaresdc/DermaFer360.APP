@@ -70,43 +70,43 @@
 
 .tabela table {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
 }
 
-.tabela th {
-    text-align: left;
-    padding: 12px 16px;
-    background-color: #f3f4f6;
-    color: #374151;
-    font-size: 14px;
-    white-space: nowrap;
-}
-
+.tabela th,
 .tabela td {
     padding: 12px 16px;
-    border-top: 1px solid #e5e7eb;
-    font-size: 14px;
-    color: #4b5563;
-}
-
-.tabela tbody tr:hover {
-    background-color: #f9fafb;
 }
 
 
-.tabela th.numero,
-.tabela td.numero {
-    text-align: right;
-    white-space: nowrap;
+.tabela th:nth-child(1),
+.tabela td:nth-child(1) {
+    width: 30%;
 }
 
 
-.tabela td.vazio {
-    text-align: center;
-    color: #6b7280;
-    padding: 24px;
+.tabela th:nth-child(2),
+.tabela td:nth-child(2) {
+    width: 20%;
 }
 
+
+.tabela th:nth-child(3),
+.tabela td:nth-child(3) {
+    width: 20%;
+}
+
+
+.tabela th:nth-child(4),
+.tabela td:nth-child(4) {
+    width: 20%;
+}
+  
+.tabela th:nth-child(5),
+.tabela td:nth-child(5) {
+    width: 20%;
+}
 
 .botao_editar,
 .botao_excluir {

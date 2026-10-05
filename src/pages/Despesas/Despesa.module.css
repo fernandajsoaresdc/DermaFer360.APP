@@ -1,0 +1,138 @@
+
+.pagina_conteudo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.pagina_cabecalho h3 {
+    margin: 20px;
+    font-size: 24px;
+    color: #1f2937;
+}
+
+.pagina_cabecalho span {
+    font-size: 14px;
+    margin: 20px;
+    color: #6b7280;
+}
+
+.botao_novo {
+    background-color: #a9aaac;
+    color: black;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 20px;
+}
+
+.botao_novo:hover {
+    background-color: #dee0e4;
+}
+
+
+.pesquisa {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #fff;
+    border: 1px solid #393a3b;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin: 20px;
+    max-width: 400px;
+}
+
+.pesquisa input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+}
+
+
+.aviso {
+    margin: 0 20px 12px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+.tabela {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    margin: 0 20px 20px;
+}
+
+.tabela table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.tabela th,
+.tabela td {
+    padding: 12px 16px;
+}
+
+
+.tabela th:nth-child(1),
+.tabela td:nth-child(1) {
+    width: 30%;
+}
+
+
+.tabela th:nth-child(2),
+.tabela td:nth-child(2) {
+    width: 25%;
+}
+
+
+.tabela th:nth-child(3),
+.tabela td:nth-child(3) {
+    width: 25%;
+}
+
+
+.tabela th:nth-child(4),
+.tabela td:nth-child(4) {
+    width: 10%;
+}
+  
+
+.botao_editar,
+.botao_excluir {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 8px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.botao_editar {
+    background-color: #dbeafe;
+    color: #2563eb;
+}
+
+.botao_editar:hover {
+    background-color: #bfdbfe;
+}
+
+.botao_excluir {
+    background-color: #fee2e2;
+    color: rgb(192, 110, 110);
+}
+
+.botao_excluir:hover {
+    background-color: #fecaca;
+}
