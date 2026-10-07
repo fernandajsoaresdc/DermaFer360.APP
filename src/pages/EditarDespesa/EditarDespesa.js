@@ -121,7 +121,7 @@ export function EditarDespesa() {
                         <span>Atualização de dados da Despesa</span>
                     </div>
 
-                    <Link to="/despesa" className={style.botao_voltar}>
+                    <Link to="/despesas" className={style.botao_voltar}>
                         <MdArrowBack />
                         Voltar
                     </Link>

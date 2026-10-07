@@ -110,6 +110,7 @@ export function Despesas() {
                         placeholder="Buscar por despesa"
                         value={busca}
                         onChange={(e) => setBusca(e.target.value)}
+                        maxLength={100}
                     />
                 </div>
 
@@ -119,7 +120,7 @@ export function Despesas() {
                     <table>
                         <thead>
                             <tr>
-                                <th>Descricao</th>
+                                <th>Descrição</th>
 
                                 <th>Data</th>
 

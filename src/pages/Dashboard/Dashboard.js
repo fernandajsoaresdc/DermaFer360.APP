@@ -21,27 +21,52 @@ export function Dashboard() {
 
     const [dataInicial, setDataInicial] = useState(primeiroDiaMes);
     const [dataFinal, setDataFinal] = useState(ultimoDiaMes);
-
+    const [dataInicialFiltro, setDataInicialFiltro] = useState(primeiroDiaMes);
+    const [dataFinalFiltro, setDataFinalFiltro] = useState(ultimoDiaMes);
     const [receitaTotal, setReceitaTotal] = useState(0);
     const [despesaTotal, setDespesaTotal] = useState(0);
-    const [lucro, setlucro] = useState(0);
+    const [lucro, setLucro] = useState(0);
     const [estoque, setEstoque] = useState(0);
 
     const [grafico, setGrafico] = useState([]);
     const [ultimasReceitas, setUltimasReceitas] = useState([]);
 
+    const alterarDataInicial = (e) => {
+        const novaData = e.target.value;
+        setDataInicial(novaData);
+
+        if (dataFinal && novaData > dataFinal) {
+            setDataFinal(novaData);
+        }
+    };
+
+    const alteraDataFinal = (e) => {
+        const novaData = e.target.value;
+
+        if (dataInicial && novaData < dataInicial) {
+            return;
+        }
+
+        setDataFinal(novaData);
+    };
+
 
     async function carregarDashboard() {
 
         try {
-            const dashboard = await RelatorioService.dashboard(dataInicial, dataFinal);
+            const dashboard = await RelatorioService.dashboard(dataInicialFiltro, dataFinalFiltro);
 
             setReceitaTotal(dashboard.receitaTotal ?? 0);
             setDespesaTotal(dashboard.despesaTotal ?? 0);
-            setlucro(dashboard.lucro ?? 0);
+            setLucro(dashboard.lucroTotal ?? 0);
             setEstoque(dashboard.produtosEstoque ?? 0);
 
-            setGrafico(dashboard.GraficoFinanceiro ?? []);
+            setGrafico(
+                Array.isArray(dashboard.graficoFinanceiro)
+                    ? dashboard.graficoFinanceiro
+                    : []
+            );
+
             setUltimasReceitas(dashboard.ultimasReceitas ?? [])
         }
         catch (error) {
@@ -52,7 +77,11 @@ export function Dashboard() {
     useEffect(() => {
         carregarDashboard();
 
-    }, [dataInicial, dataFinal]);
+    }, []);
+
+    useEffect(() => {
+        carregarDashboard();
+    }, [dataInicialFiltro, dataFinalFiltro]);
 
 
 
@@ -63,6 +92,7 @@ export function Dashboard() {
 
                     <div className={style.titulo}>
                         <h1>Dashboard Financeira</h1>
+                        
                         <span>Departamento Financeiro - DermaFer360</span>
                     </div>
 
@@ -73,7 +103,7 @@ export function Dashboard() {
                             <input
                                 type="date"
                                 value={dataInicial}
-                                onChange={(e) => setDataInicial(e.target.value)}
+                                onChange={alterarDataInicial}
                             />
                         </div>
 
@@ -83,13 +113,24 @@ export function Dashboard() {
                             <input
                                 type="date"
                                 value={dataFinal}
-                                onChange={(e) => setDataFinal(e.target.value)}
+                                min={dataInicial}
+                                onChange={alteraDataFinal}
                             />
                         </div>
 
-                        <button className={style.botaoFiltrarData} onClick={carregarDashboard}
+                        <button className={style.botaoFiltrarData} onClick={() => {
+
+                            if (dataFinal < dataInicial) {
+                                alert("A data final não pode ser menor que a data inicial.");
+                                return;
+                            }
+
+                            setDataInicialFiltro(dataInicial);
+                            setDataFinalFiltro(dataFinal);
+                        }}
                         >
                             Filtrar Data
+
                         </button>
                     </div>
 

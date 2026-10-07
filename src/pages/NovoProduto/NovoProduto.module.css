@@ -115,21 +115,21 @@
 }
 
 .botao_cancelar {
-    background-color: #e5e7eb;
-    color: #374151;
+    background-color: rgb(192, 110, 110);
+    color: black;
 }
 
 .botao_cancelar:hover {
-    background-color: #d1d5db;
+   background-color: rgb(182, 129, 129);
 }
 
 .botao_salvar {
-    background-color: #a9aaac;
+    background-color: #bbf7d0;
     color: black;
 }
 
 .botao_salvar:hover {
-    background-color: #dee0e4;
+   background-color: #8eb39b;
 }
 
 .botao_salvar:disabled {

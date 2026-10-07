@@ -5,7 +5,7 @@ const RelatorioService = {
     async dashboard(dataInicial,dataFinal) {
         try {
             const resposta = await HTTPClient.get("/Relatorio/Dashboard", {params:{dataInicial, dataFinal}});
-            return resposta.data;
+            return resposta.data.dashboard;
         } 
         catch (error) 
         {

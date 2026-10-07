@@ -1,58 +1,84 @@
-import { ResponsiveContainer, AreaChart, Area, XAxis, Tooltip, CartesianGrid } from "recharts";
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 import style from "./GraficoFinanceiro.module.css";
+
+
 
 export function GraficoFinanceiro({ dados }) {
 
-     return (
-    <div className={style.card}>
+    return (
+        <div className={style.card}>
 
-      <h3>Receitas x Despesas</h3>
+            <h3>Receitas x Despesas</h3>
 
-      <div className={style.containerGrafico}>
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={dados}>
+            <div className={style.containerGrafico}>
 
-            <CartesianGrid stroke="#2E2E2E" strokeDasharray="3 3" />
+                <ResponsiveContainer width="100%" height="100%">
 
-            <XAxis dataKey="mes" stroke="#BFBFBF" />
+                    <LineChart data={dados}
+                        margin={{
+                            top: 10,
+                            right: 15,
+                            left: 0,
+                            bottom: 5
+                        }}
+                    >
 
-            <Tooltip />
+                        <CartesianGrid
+                            stroke="#333333"
+                            strokeDasharray="3 3"
+                        />
 
-            <Area
-              type="monotone"
-              dataKey="receita"
-              stroke="#E5E5E5"
-              fill="#CFCFCF"
-              fillOpacity={0.45}
-            />
+                        <XAxis
+                            dataKey="mes"
+                            stroke="#FFFFFF"
+                            tick={{ fill: "#FFFFFF",fontSize: 12 }}
+                        />
 
-            <Area
-              type="monotone"
-              dataKey="despesa"
-              stroke="#7A7A7A"
-              fill="#505050"
-              fillOpacity={0.35}
-            />
+                        <YAxis
+                            stroke="#FFFFFF"
+                            tick={{ fill: "#FFFFFF", fontSize: 12 }}
+                        />
 
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
+                        <Tooltip />
 
-      <div className={style.legenda}>
+                        <Line
+                            type="linear"
+                            dataKey="receita"
+                            stroke="#00FF66"
+                            strokeWidth={3}
+                            dot={{ r: 3, fill: "#00FF66 "}}
+                            activeDot={{ r: 6, fill: "#00FF66" }}
+                        />
 
-        <div className={style.itemLegenda}>
-          <div className={style.corReceita}></div>
-          <span>Receita</span>
+                        <Line
+                            type="linear"
+                            dataKey="despesa"
+                            stroke="#FF3030"
+                            strokeWidth={3}
+                            dot={{ r: 3, fill: "#FF3030" }}
+                            activeDot={{ r: 6, fill: "#FF3030"}}
+                        />
+
+                    </LineChart>
+
+                </ResponsiveContainer>
+
+            </div>
+
+            <div className={style.legenda}>
+
+                <div>
+                    <span className={style.pontoReceita}></span>
+                    Receita
+                </div>
+
+                <div>
+                    <span className={style.pontoDespesa}></span>
+                    Despesa
+                </div>
+
+            </div>
+
         </div>
-
-        <div className={style.itemLegenda}>
-          <div className={style.corDespesa}></div>
-          <span>Despesa</span>
-        </div>
-
-      </div>
-
-    </div>
-  );
+    );
 }
-   

@@ -121,6 +121,7 @@ export function Usuarios() {
                         placeholder="Buscar por nome ou e-mail"
                         value={busca}
                         onChange={(e) => setBusca(e.target.value)}
+                        maxLength={100}
                     />
 
                 </div>

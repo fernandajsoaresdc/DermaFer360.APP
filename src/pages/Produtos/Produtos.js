@@ -94,6 +94,7 @@ export function Produtos() {
                         placeholder="Buscar produto por nome ou descrição"
                         value={busca}
                         onChange={(e) => setBusca(e.target.value)}
+                        maxLength={100}
                     />
                 </div>
 

@@ -81,6 +81,7 @@ export function NovoProduto() {
                         <input
                             id="nome"
                             type="text"
+                            maxLength={100}
                             placeholder="Digite o nome do produto."
                             value={nome}
                             onChange={(e) => setNome(e.target.value)}

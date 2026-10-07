@@ -1,4 +1,4 @@
-/* Tela inteira */
+
 .pagina {
     width: 100%;
     height: 100vh;
@@ -11,13 +11,13 @@
     align-items: center;
 }
 
-/* Logo */
+
 .logoImagem {
     width: 500px;
     margin-bottom: 30px;
 }
 
-/* Texto abaixo da logo - Acesso a plataforma */
+
 .eyebrow {
     color: #f0e9e9;
     font-size: 20px;
@@ -25,20 +25,20 @@
     text-align: center;
 }
 
-/* Mensagem de erro */
+
 .mensagemErro {
     color: #f00909;
     margin-bottom: 20px;
     font-size: 14px;
 }
 
-/* Grupo dos campos */
+
 .campo {
     width: 100%;
     margin-bottom: 25px;
 }
 
-/* Nome do campo */
+
 .label {
     display: block;
     color: rgb(253, 249, 249);
@@ -47,7 +47,7 @@
     ;
 }
 
-/* Campo de texto sem caixa */
+
 .input {
     width: 60%;
     padding: 12px 0;
@@ -63,12 +63,12 @@
    
 }
 
-/* Linha muda de cor quando clicar */
+
 .input:focus {
     border-bottom: 2px solid white;
 }
 
-/* Botão Entrar */
+
 .botaoEntrar {
     width: 20%;
     padding: 14px;
@@ -94,7 +94,7 @@
     cursor: not-allowed;
 }
 
-/* Rodapé */
+
 .rodape {
     color: #faf6f6;
     font-size: 13px;

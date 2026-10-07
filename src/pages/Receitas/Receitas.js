@@ -112,6 +112,7 @@ export function Receitas() {
                         placeholder="Buscar por produto"
                         value={busca}
                         onChange={(e) => setBusca(e.target.value)}
+                        maxLength={100}
                     />
                 </div>
 

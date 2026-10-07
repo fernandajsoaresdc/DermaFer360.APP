@@ -89,6 +89,7 @@ export function NovoUsuario() {
                         <input
                             id="nome"
                             type="text"
+                            maxLength={100}
                             placeholder="Digite o nome do usuário."
                             value={nome}
                             onChange={(e) => setNome(e.target.value)}
@@ -100,6 +101,7 @@ export function NovoUsuario() {
                         <input
                             id="email"
                             type="text"
+                            maxLength={254}
                             placeholder="Digite o email do usuário."
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}

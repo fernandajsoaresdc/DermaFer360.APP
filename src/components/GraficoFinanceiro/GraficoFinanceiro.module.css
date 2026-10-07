@@ -1,28 +1,23 @@
 .card {
-    width: 100%;
+    background-color: #e9e3e3;
+    border: 2px solid #333333;
+    border-radius: 18px;
+    padding: 25px;
     box-sizing: border-box;
-    background: #e6e0e0;
-    border: 2px solid #383636;
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
 .card h3 {
-    margin: 0 0 20px;
-    color: #1a1919;
-    font-size: 19px;
-    font-weight: 600;
+    margin: 0 0 20px 0;
+    color: #111111;
 }
 
 .containerGrafico {
     width: 100%;
     height: 320px;
-    box-sizing: border-box;
+    background-color: #050505;
+    border-radius: 15px;
     padding: 10px;
-    background: #fafafa;
-    border: 1px solid #ededed;
-    border-radius: 12px;
+    box-sizing: border-box;
 }
 
 .legenda {
@@ -30,43 +25,28 @@
     justify-content: center;
     gap: 30px;
     margin-top: 18px;
+    font-size: 14px;
+    color: black;
 }
 
-.itemLegenda {
+.legenda div {
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: #1f1d1d;
-    font-size: 13px;
+    gap: 7px;
 }
 
-.corReceita,
-.corDespesa {
+.pontoReceita,
+.pontoDespesa {
     width: 10px;
     height: 10px;
     border-radius: 50%;
+    display: inline-block;
 }
 
-.corReceita {
-    background: #1a1919;
+.pontoReceita {
+    background-color: #00FF66;
 }
 
-.corDespesa {
-    background: #8b8989;
-}
-
-
-@media (max-width: 768px) {
-
-    .card {
-        padding: 18px;
-    }
-
-    .containerGrafico {
-        height: 260px;
-    }
-
-    .legenda {
-        gap: 15px;
-    }
+.pontoDespesa {
+    background-color: #FF3030;
 }

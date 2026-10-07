@@ -43,6 +43,24 @@ export function NovaReceita() {
 
     }, []);
 
+    const selecionarProduto = (e) => {
+        const id = e.target.value;
+
+        setProdutoId(id);
+
+        const produtoSelecionado = produtos.find(
+            (produto) => produto.id === Number(id)
+        );
+
+        if(produtoSelecionado)
+        {
+            setPrecoUnitario(produtoSelecionado.precoVenda);
+        }
+        else
+        {
+            setPrecoUnitario("");
+        }
+    }
 
     const handleSalvar = async (e) => {
         e.preventDefault();
@@ -69,7 +87,7 @@ export function NovaReceita() {
 
         try {
             setSalvando(true);
-            await ReceitaService.criarAsync(produtoId, quantidade, precoUnitario, dataReceita, usuarioId );
+            await ReceitaService.criarAsync(produtoId, quantidade, precoUnitario, dataReceita, usuarioId);
 
             setMostrarModalSucesso(true);
 
@@ -81,6 +99,7 @@ export function NovaReceita() {
         } catch (error) {
 
             console.error("Erro ao criar receita.", error);
+
 
         } finally {
 
@@ -117,7 +136,7 @@ export function NovaReceita() {
                         <select
                             id="produtoId"
                             value={produtoId}
-                            onChange={(e) => setProdutoId(e.target.value)}
+                            onChange={selecionarProduto}
                         >
                             <option value="">Selecione um produto</option>
 
@@ -149,33 +168,33 @@ export function NovaReceita() {
 
                     </div>
 
-                        <div className={style.campo}>
-                            <label htmlFor="precoUnitario">Preço unitário (R$)</label>
-                            <input
-                                id="precoUnitario"
-                                type="number"
-                                min="0"
-                                step="0.01"
-                                placeholder="0,00"
-                                value={precoUnitario}
-                                onChange={(e) => setPrecoUnitario(e.target.value)}
-                            />
+                    <div className={style.campo}>
+                        <label htmlFor="precoUnitario">Preço unitário (R$)</label>
+                        <input
+                            id="precoUnitario"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            placeholder="0,00"
+                            value={precoUnitario}
+                            onChange={(e) => setPrecoUnitario(e.target.value)}
+                        />
 
-                        </div>
+                    </div>
 
 
-                        <div className={style.campo}>
-                            <label htmlFor="dataReceita">Data da receita</label>
-                            <input
-                                id="dataReceita"
-                                type="date"
-                                value={dataReceita}
-                                onChange={(e) => setDataReceita(e.target.value)}
-                            />
+                    <div className={style.campo}>
+                        <label htmlFor="dataReceita">Data da receita</label>
+                        <input
+                            id="dataReceita"
+                            type="date"
+                            value={dataReceita}
+                            onChange={(e) => setDataReceita(e.target.value)}
+                        />
 
-                        </div>
+                    </div>
 
-                    
+
 
                     {erro && (<p className={style.erro}>{erro}</p>)}
 
@@ -187,7 +206,7 @@ export function NovaReceita() {
 
                         <button type="submit" className={style.botao_salvar} disabled={salvando}>
 
-                            {salvando ? "Salvando...": "Salvar"}
+                            {salvando ? "Salvando..." : "Salvar"}
                         </button>
                     </div>
                 </form>
