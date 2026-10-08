@@ -1,0 +1,309 @@
+.pagina {
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    display: flex;
+}
+
+.conteudo {
+    flex: 1;
+    min-width: 0;
+}
+
+.principal {
+    padding: 30px;
+    padding-top: 90px;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.cabecalho h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #111111;
+}
+
+.cabecalho p {
+    margin-top: 8px;
+    color: #666666;
+    font-size: 15px;
+}
+
+.botaoLimpar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    color: #333333;
+    padding: 10px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.botaoLimpar:hover {
+    background-color: #eeeeee;
+}
+
+.chat {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 12px;
+    min-height: calc(100vh - 190px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.areaMensagens {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    min-height: 420px;
+}
+
+.mensagemInicial {
+    max-width: 650px;
+    margin: 70px auto;
+    text-align: center;
+}
+
+.iconeIA {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background-color: #111111;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+}
+
+.mensagemInicial h2 {
+    margin: 0;
+    color: #222222;
+    font-size: 23px;
+}
+
+.mensagemInicial p {
+    color: #666666;
+    line-height: 1.6;
+    margin: 12px auto 25px;
+    max-width: 600px;
+}
+
+.sugestoes {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.sugestoes button {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 20px;
+    padding: 9px 15px;
+    cursor: pointer;
+    color: #333333;
+}
+
+.sugestoes button:hover {
+    border-color: #111111;
+    background-color: #f5f5f5;
+}
+
+.linhaUsuario {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 18px;
+}
+
+.linhaIA {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 18px;
+}
+
+.mensagemUsuario {
+    max-width: 70%;
+    background-color: #111111;
+    color: #ffffff;
+    padding: 13px 17px;
+    border-radius: 15px 15px 3px 15px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.mensagemIA {
+    max-width: 75%;
+    background-color: #f1f1f1;
+    color: #222222;
+    padding: 15px 18px;
+    border-radius: 15px 15px 15px 3px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.mensagemErro {
+    max-width: 75%;
+    background-color: #fff1f1;
+    color: #b00020;
+    border: 1px solid #e0b5b5;
+    padding: 14px 18px;
+    border-radius: 10px;
+}
+
+.tituloIA {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #111111;
+}
+
+.tituloIA svg {
+    font-size: 20px;
+}
+
+.areaEntrada {
+    display: flex;
+    gap: 12px;
+    padding: 18px;
+    border-top: 1px solid #dddddd;
+    background-color: #fafafa;
+}
+
+.areaEntrada textarea {
+    flex: 1;
+    min-height: 50px;
+    max-height: 120px;
+    resize: vertical;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    padding: 14px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.areaEntrada textarea:focus {
+    border-color: #777777;
+}
+
+.botaoEnviar {
+    align-self: flex-end;
+    height: 50px;
+    min-width: 105px;
+    border: none;
+    border-radius: 8px;
+    background-color: #111111;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.botaoEnviar:hover {
+    background-color: #333333;
+}
+
+.botaoEnviar:disabled {
+    background-color: #aaaaaa;
+    cursor: not-allowed;
+}
+
+.carregando {
+    display: flex;
+    gap: 5px;
+    padding: 5px 0;
+}
+
+.carregando span {
+    width: 7px;
+    height: 7px;
+    background-color: #666666;
+    border-radius: 50%;
+    animation: pulsar 1.2s infinite;
+}
+
+.carregando span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.carregando span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes pulsar {
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.aviso {
+    padding: 10px 18px;
+    text-align: center;
+    font-size: 11px;
+    color: #888888;
+    background-color: #fafafa;
+}
+
+@media (max-width: 900px) {
+    .conteudo {
+        width: 100%;
+    }
+
+    .principal {
+        padding: 80px 15px 20px;
+    }
+
+    .cabecalho {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    .mensagemUsuario,
+    .mensagemIA {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    .areaMensagens {
+        padding: 15px;
+    }
+
+    .areaEntrada {
+        flex-direction: column;
+    }
+
+    .botaoEnviar {
+        width: 100%;
+    }
+
+    .mensagemInicial {
+        margin: 40px auto;
+    }
+}

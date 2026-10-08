@@ -1,7 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import style from './Sidebar.module.css';
-import { MdOutlineDashboard, MdGroup, MdInventory2, MdAttachMoney, MdMoneyOff, MdAssessment } from 'react-icons/md';
+import { MdOutlineDashboard, MdGroup, MdInventory2, MdAttachMoney, MdMoneyOff, MdAssessment, MdSmartToy } from 'react-icons/md';
 import { SidebarItem } from "../SidebarItem/SidebarItem";
 import Logo from '../../assets/DermaFer360.2.png';
 
@@ -47,6 +47,11 @@ export function Sidebar({ children }) {
                 <div className={style.sidebar_corpo}>
 
                     <SidebarItem texto="Relatório Financeiro" link="/relatorio-financeiro" logo={<MdAssessment />} />
+                </div>
+
+                <div className={style.sidebar_corpo}>
+
+                    <SidebarItem texto="DermaFer IA" link="/ia" logo={<MdSmartToy />}/>
                 </div>
 
             </div>

@@ -14,6 +14,7 @@ import { Despesas } from "./pages/Despesas/Despesas";
 import { NovaDespesa } from "./pages/NovaDespesa/NovaDespesa";
 import { EditarDespesa } from "./pages/EditarDespesa/EditarDespesa";
 import { RelatorioFinanceiro } from "./pages/RelatorioFinanceiro/RelatorioFinanceiro";
+import { IA } from "./pages/InteligenciaArtificial/IA";
 import { RotaPrivada } from "./components/RotaPrivada/RotaPrivada";
 
 
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/despesa/novo" element={<RotaPrivada><NovaDespesa/></RotaPrivada>}/>
                 <Route path="/despesa/editar/:id" element={<RotaPrivada><EditarDespesa/></RotaPrivada>}/>
                 <Route path="/relatorio-financeiro" element={<RotaPrivada><RelatorioFinanceiro/></RotaPrivada>}/>
+                <Route path="/ia" element={<RotaPrivada><IA/></RotaPrivada>}/>
             </Routes>
 
         </BrowserRouter>
