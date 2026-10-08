@@ -39,7 +39,6 @@
     border: 1px solid #393a3b;
     border-radius: 6px;
     padding: 8px 12px;
-    margin-bottom: 30px;
     margin: 20px;
     max-width: 400px;
 }
@@ -49,6 +48,35 @@
     outline: none;
     width: 100%;
     font-size: 14px;
+}
+
+.filtroStatus {
+    display: flex;
+    gap: 8px;
+    margin: 0 20px 20px;
+}
+
+.filtroStatus button {
+    height: 36px;
+    padding: 0 18px;
+    border: 1px solid #d4d4d4;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #555555;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.filtroStatus button:hover {
+    border-color: #999999;
+}
+
+.filtroStatus .filtroAtivo {
+    background-color: #272626;
+    border-color: #272626;
+    color: #ffffff;
 }
 
 .tabela {
@@ -70,37 +98,33 @@
     padding: 12px 16px;
 }
 
-
 .tabela th:nth-child(1),
 .tabela td:nth-child(1) {
     width: 30%;
 }
 
-
 .tabela th:nth-child(2),
 .tabela td:nth-child(2) {
-    width: 30%;
+    width: 25%;
 }
-
 
 .tabela th:nth-child(3),
 .tabela td:nth-child(3) {
     width: 20%;
 }
 
-
 .tabela th:nth-child(4),
 .tabela td:nth-child(4) {
-    width: 20%;
+    width: 10%;
 }
-  
+
 .tabela th:nth-child(5),
 .tabela td:nth-child(5) {
-    width: 20%;
+    width: 15%;
 }
 
 
-.botao_editar, 
+.botao_editar,
 .botao_restaurar,
 .botao_excluir {
     display: inline-flex;
@@ -134,4 +158,3 @@
 .botao_restaurar:hover {
     background-color: #bbf7d0;
 }
-

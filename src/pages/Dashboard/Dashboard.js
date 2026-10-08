@@ -159,7 +159,7 @@ export function Dashboard() {
                             titulo="Lucro Liquído"
                             valor={`R$ ${lucro.toFixed(2)}`}
                             icone={<BsGraphUp />}
-                            cor="lucro"
+                            cor={lucro >= 0 ? "lucroPositivo" : "lucroNegativo"}
 
                         />
 

@@ -7,7 +7,13 @@ import { Topbar } from "../../components/Topbar/Topbar";
 import UsuarioService from "../../services/UsuarioService";
 import { Modal, Button } from "react-bootstrap";
 
-
+const Cargos = {
+    1: "Analista Financeiro",
+    2: "Coordenador Financeiro",
+    3: "Gerente Financeiro",
+    4: "Diretor Financeiro",
+    5: "Auditor Financeiro",
+};
 
 export function Usuarios() {
     const navgate = useNavigate();
@@ -18,6 +24,7 @@ export function Usuarios() {
     const [usuarioSelecionado, setUsuarioSelecionado] = useState(null);
     const [busca, setBusca] = useState("");
     const [carregando, setCarregando] = useState(false);
+    const [filtroStatus, setFiltroStatus] = useState("todos");
 
 
     async function carregarUsuarios() {
@@ -90,10 +97,11 @@ export function Usuarios() {
     const usuariosFiltrados = usuarios.filter((usuario) => {
         const textoBusca = busca.toLowerCase();
 
-        return (usuario.nome?.toLowerCase().includes(textoBusca)) || usuario.email?.toLowerCase().includes(textoBusca)
-    })
+        const buscaUsuario = usuario.nome?.toLowerCase().includes(textoBusca) || usuario.email?.toLowerCase().includes(textoBusca);
 
-
+        const statusUsuario = filtroStatus === "todos" || (filtroStatus === "ativos" && usuario.ativo) || (filtroStatus === "inativos" && !usuario.ativo);
+        return buscaUsuario && statusUsuario;
+    });
 
 
     return (
@@ -126,6 +134,24 @@ export function Usuarios() {
 
                 </div>
 
+                <div className={style.filtroStatus}>
+                    <button
+                        className={filtroStatus === "todos" ? style.filtroAtivo : ""} onClick={() => setFiltroStatus("todos")}>
+                        Todos
+                    </button>
+
+
+                    <button
+                        className={filtroStatus === "ativos" ? style.filtroAtivo : ""} onClick={() => setFiltroStatus("ativos")}>
+                        Ativos
+                    </button>
+
+                    <button
+                        className={filtroStatus === "inativos" ? style.filtroAtivo : ""} onClick={() => setFiltroStatus("inativos")}>
+                        Inativos
+                    </button>
+                </div>
+                
 
                 <div className={style.tabela}>
 
@@ -139,7 +165,7 @@ export function Usuarios() {
 
                                 <th>E-mail</th>
 
-                                <th>Cargo</th>
+                                <th>Cargos</th>
 
                                 <th>Status</th>
 
@@ -165,7 +191,7 @@ export function Usuarios() {
                                     </td>
 
                                     <td>
-                                        {usuario.cargo}
+                                        {Cargos[usuario.cargo] ?? "-"}
                                     </td>
 
                                     <td>

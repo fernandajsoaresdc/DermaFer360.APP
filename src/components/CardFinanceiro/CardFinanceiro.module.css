@@ -1,28 +1,40 @@
-.card{
-    background-color: linear-gradient(180deg,#151515,#0B0B0B);
-    border: 2PX solid#3a3939;
-    border-radius: 20px;
+.card {
+    background-color: #e9e3e3;
+    border: 2px solid #333333;
+    border-radius: 18px;
     padding: 25px;
-    box-shadow: 0 0 20px rgba(192,192,192,.08);
-    transition: .3s;;
+    box-sizing: border-box;
+    transition: 0.3s;
 }
 
-.card:hover{
+.card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 0 25px rgba(192,192,192,.20);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
-.topo span{
+.topo span {
     font-size: 34px;
+    color: #111111;
 }
 
-.card h4{
-    color: #CFCFCF;
-    margin-top: 15PX;
+.card h4 {
+    margin: 15px 0 0;
+    font-weight: 500;
+    color: #333333;
 }
 
-.CARD strong{
+.card strong {
     font-size: 30px;
-    color: #FFFFFF;
+    font-weight: 700;
+    color: #111111;
 }
 
+.receita strong,
+.lucroPositivo strong {
+    color: #0a9d17;
+}
+
+.despesa strong,
+.lucroNegativo strong {
+    color: #e60909;
+}

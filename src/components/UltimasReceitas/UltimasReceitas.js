@@ -10,15 +10,19 @@ export function UltimasReceitas({ receitas }) {
 
             <div className={style.listaReceitas}>
 
-                {receitas.map((receita) => (
-                    <div key={receita.id} className={style.itemReceita}>
+                {receitas.map((receita, index) => (
+                    <div key={index} className={style.itemReceita}>
 
                         <div className={style.informacoes}>
                             <strong>{receita.produto}</strong>
-                            <span>{receita.data}</span>
+                            <span>{new Date(receita.dataReceita).toLocaleDateString("pt-BR")}</span>
                         </div>
+
                         <div className={style.valor}>
-                            R${receita.valor}
+                            {receita.valorTotal.toLocaleString("pt-BR", {
+                                style: "currency",
+                                currency: "BRL",
+                            })}
                         </div>
                     </div>
                 ))}
