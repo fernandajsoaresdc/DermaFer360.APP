@@ -10,27 +10,31 @@ export function IA() {
     const [mensagens, setMensagens] = useState([]);
     const [carregando, setCarregando] = useState(false);
 
+
     async function enviarPergunta() {
+
         if (!pergunta || carregando) {
-            return;
-        }
+        return;
+    }
 
         const perguntaEnviada = pergunta;
 
         setMensagens((anteriores) => [...anteriores, { tipo: "usuario", texto: perguntaEnviada }]);
+
         setPergunta("");
+
         setCarregando(true);
 
         try {
             const resposta = await IAService.perguntarAsync(perguntaEnviada);
 
             setMensagens((anteriores) => [...anteriores, { tipo: "ia", texto: resposta }]);
-        } 
+        }
         catch (error) {
             console.error("Erro ao conversar com a IA:", error);
 
-            setMensagens((anteriores) => [...anteriores, { tipo: "erro", texto: "Não foi possível obter uma resposta da DermaFer IA."}]);
-        } 
+            setMensagens((anteriores) => [...anteriores, { tipo: "erro", texto: "Não foi possível obter uma resposta da DermaFer IA." }]);
+        }
         finally {
             setCarregando(false);
         }
@@ -65,8 +69,7 @@ export function IA() {
                         </div>
 
                         {mensagens.length > 0 && (
-                            <button
-                                className={style.botaoLimpar} onClick={limparConversa}>
+                            <button className={style.botaoLimpar} onClick={limparConversa}>
                                 <MdDeleteOutline />
                                 Limpar conversa
                             </button>
@@ -112,9 +115,9 @@ export function IA() {
                             )}
 
                             {mensagens.map((mensagem, index) => (
-                                <div key={index} className={ mensagem.tipo === "usuario"? style.linhaUsuario : style.linhaIA }>
+                                <div key={index} className={mensagem.tipo === "usuario" ? style.linhaUsuario : style.linhaIA}>
 
-                                    <div className={ mensagem.tipo === "usuario"? style.mensagemUsuario : mensagem.tipo === "erro"? style.mensagemErro : style.mensagemIA }>
+                                    <div className={mensagem.tipo === "usuario" ? style.mensagemUsuario : mensagem.tipo === "erro" ? style.mensagemErro : style.mensagemIA}>
 
                                         {mensagem.tipo === "ia" && (
                                             <div className={style.tituloIA}>
@@ -123,7 +126,7 @@ export function IA() {
                                             </div>
                                         )}
 
-                                        {mensagem.texto}
+                                        {mensagem.texto.split("\n").map((linha, indice) => (<span key={indice}>{linha || "\u00A0"}<br /></span>))}
 
                                     </div>
 
