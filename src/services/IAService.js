@@ -4,10 +4,7 @@ const IAService = {
 
     perguntarAsync: async (pergunta) => {
         
-        const resposta = await HTTPClient.post("/IA/Perguntar", {
-            pergunta: pergunta
-        });
-
+        const resposta = await HTTPClient.post("/IA/Perguntar", {pergunta: pergunta});
         return resposta.data.resposta;
     }
 };
