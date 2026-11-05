@@ -135,6 +135,7 @@ export function EditarDespesa() {
                             type="text"
                             placeholder="Digite a descrição da despesa"
                             value={descricao}
+                            maxLength={300}
                             onChange={(e) => setDescricao(e.target.value)}
                         >
                         </input>
@@ -148,6 +149,7 @@ export function EditarDespesa() {
                             min="0"
                             step="0.01"
                             value={valor}
+                            maxLength={100}
                             onChange={(e) => setValor(e.target.value)}
                         />
                     </div>
@@ -158,6 +160,7 @@ export function EditarDespesa() {
                             id="dataDespesa"
                             type="date"
                             value={dataDespesa}
+                            maxLength={100}
                             onChange={(e) => setDataDespesa(e.target.value)}
                         />
                     </div>

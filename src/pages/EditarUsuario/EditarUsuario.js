@@ -97,6 +97,7 @@ export function EditarUsuario() {
                             id="nome"
                             type="text"
                             value={nome}
+                            maxLength={100}
                             onChange={(e) => setNome(e.target.value)}
                         />
                     </div>
@@ -107,6 +108,7 @@ export function EditarUsuario() {
                             id="email"
                             type="text"
                             value={email}
+                            maxLength={100}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
@@ -116,6 +118,7 @@ export function EditarUsuario() {
                         <select
                             id="cargo"
                             value={cargo}
+                            maxLength={100}
                             onChange={(e) => setCargo(e.target.value)}
                         >
                             <option value="">Selecione o cargo a ser editado</option>

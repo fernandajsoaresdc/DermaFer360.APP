@@ -110,6 +110,7 @@ export function EditarProduto() {
                         id="nome"
                         type="text"
                         value={nome}
+                        maxLength={100}
                         onChange={(e) => setNome(e.target.value)}
                         />
                     </div>
@@ -120,6 +121,7 @@ export function EditarProduto() {
                         id="descricao"
                         rows={3}
                         value={descricao}
+                        maxLength={300}
                         onChange={(e) => setDescricao(e.target.value)}
                         />
                     </div>
@@ -132,6 +134,7 @@ export function EditarProduto() {
                         min="0"
                         step="0.01"
                         value={precoCusto}
+                        maxLength={100}
                         onChange={(e) => setPrecoCusto(e.target.value)}
                         />
                     </div>
@@ -144,6 +147,7 @@ export function EditarProduto() {
                         min="0"
                         step="0.01"
                         value={precoVenda}
+                        maxLength={100}
                         onChange={(e) => setPrecoVenda(e.target.value)}
                         />
                     </div>
@@ -156,6 +160,7 @@ export function EditarProduto() {
                         min="0"
                         step="1"
                         value={estoque}
+                        maxLength={100}
                         onChange={(e) => setEstoque(e.target.value)}
                         />
                     </div>

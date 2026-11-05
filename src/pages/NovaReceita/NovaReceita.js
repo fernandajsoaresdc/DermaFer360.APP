@@ -163,6 +163,7 @@ export function NovaReceita() {
                             min="1"
                             placeholder="Digite a quantidade do produto."
                             value={quantidade}
+                            maxLength={100}
                             onChange={(e) => setQuantidade(e.target.value)}
                         />
 
@@ -177,6 +178,7 @@ export function NovaReceita() {
                             step="0.01"
                             placeholder="0,00"
                             value={precoUnitario}
+                            maxLength={100}
                             onChange={(e) => setPrecoUnitario(e.target.value)}
                         />
 
@@ -189,6 +191,7 @@ export function NovaReceita() {
                             id="dataReceita"
                             type="date"
                             value={dataReceita}
+                            maxLength={100}
                             onChange={(e) => setDataReceita(e.target.value)}
                         />
 

@@ -89,6 +89,7 @@ export function NovaDespesa() {
                             type="text"
                             placeholder="Digite a descrição da despesa."
                             value={descricao}
+                            maxLength={300}
                             onChange={(e) => setDescricao(e.target.value)}
                         />
                     </div>
@@ -102,6 +103,7 @@ export function NovaDespesa() {
                             step="0.01"
                             placeholder="0,00"
                             value={valor}
+                            maxLength={100}
                             onChange={(e) => setValor(e.target.value)}
                         />
 
@@ -113,6 +115,7 @@ export function NovaDespesa() {
                             id="dataDespesa"
                             type="date"
                             value={dataDespesa}
+                            maxLength={100}
                             onChange={(e) => setDataDespesa(e.target.value)}
                         />
 

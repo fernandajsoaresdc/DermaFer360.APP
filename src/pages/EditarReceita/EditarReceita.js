@@ -153,6 +153,7 @@ export function EditarReceita() {
                         min="1"
                         step="1"
                         value={quantidade}
+                        maxLength={100}
                         onChange={(e) => setQuantidade(e.target.value)}
                         />
                     </div>
@@ -165,6 +166,7 @@ export function EditarReceita() {
                         min="0"
                         step="0.01"
                         value={precoUnitario}
+                        maxLength={100}
                         onChange={(e) => setPrecoUnitario(e.target.value)}
                         />
                     </div>
@@ -175,6 +177,7 @@ export function EditarReceita() {
                         id="dataReceita"
                         type="date"
                         value={dataReceita}
+                        maxLength={100}
                         onChange={(e) => setDataReceita(e.target.value)}
                         />
                     </div>

@@ -101,7 +101,7 @@ export function NovoUsuario() {
                         <input
                             id="email"
                             type="text"
-                            maxLength={254}
+                            maxLength={100}
                             placeholder="Digite o email do usuário."
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -113,6 +113,7 @@ export function NovoUsuario() {
                         <select
                             id="cargo"
                             value={cargo}
+                            maxLength={100}
                             onChange={(e) => setCargo(e.target.value)}
                         >
                             <option value="">Selecione o cargo</option>
@@ -131,6 +132,7 @@ export function NovoUsuario() {
                                 type="password"
                                 placeholder="Digite a senha do usuário."
                                 value={senha}
+                                maxLength={50}
                                 onChange={(e) => setSenha(e.target.value)}
                             />
                         </div>
@@ -142,6 +144,7 @@ export function NovoUsuario() {
                                 type="password"
                                 placeholder="Digite a senha novamente."
                                 value={confirmarSenha}
+                                maxLength={50}
                                 onChange={(e) => setConfirmarSenha(e.target.value)}
                             />
                         </div>

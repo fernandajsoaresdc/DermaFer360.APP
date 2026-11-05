@@ -95,6 +95,7 @@ export function NovoProduto() {
                             rows={3}
                             placeholder="Digite a descrição do produto."
                             value={descricao}
+                            maxLength={300}
                             onChange={(e) => setDescricao(e.target.value)}
                         />
                     </div>
@@ -109,6 +110,7 @@ export function NovoProduto() {
                                 step="0.01"
                                 placeholder="0,00"
                                 value={precoCusto}
+                                maxLength={100}
                                 onChange={(e) => setPrecoCusto(e.target.value)}
                             />
                         </div>
@@ -122,6 +124,7 @@ export function NovoProduto() {
                                 step="0.01"
                                 placeholder="0,00"
                                 value={precoVenda}
+                                maxLength={100}
                                 onChange={(e) => setPrecoVenda(e.target.value)}
                             />
                         </div>
@@ -135,6 +138,7 @@ export function NovoProduto() {
                                 step="1"
                                 placeholder="0"
                                 value={estoque}
+                                maxLength={100}
                                 onChange={(e) => setEstoque(e.target.value)}
                             />
                         </div>
