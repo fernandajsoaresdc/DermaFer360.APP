@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 import style from "./NovoUsuario.module.css";
-import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { Topbar } from "../../components/Topbar/Topbar";
 import UsuarioService from "../../services/UsuarioService";
 import { Modal } from "react-bootstrap";
 
@@ -68,110 +66,113 @@ export function NovoUsuario() {
     };
 
     return (
-        <Sidebar>
-            <Topbar>
-                <div className={style.pagina_conteudo}>
-                    <div className={style.pagina_cabecalho}>
-                        <h3>Novo Usuário</h3>
+        <div className={style.pagina_conteudo}>
+            <div className={style.pagina_cabecalho}>
+                <div className={style.titulo}>
+                    <h3>Novo Usuário</h3>
 
-                        <span>Cadastro de Usuários</span>
-                    </div>
-
-                    <Link to="/usuarios" className={style.botao_voltar}>
-                        <MdArrowBack />
-                        Voltar
-                    </Link>
+                    <span>Cadastro de Usuários</span>
                 </div>
 
-                <form className={style.formulario} onSubmit={handleSalvar}>
+                <Link to="/usuarios" className={style.botao_voltar}>
+                    <MdArrowBack />
+                    Voltar
+                </Link>
+            </div>
+
+            <form className={style.formulario} onSubmit={handleSalvar}>
+                <div className={style.campo}>
+                    <label htmlFor="nome">Nome</label>
+                    <input
+                        id="nome"
+                        type="text"
+                        maxLength={100}
+                        placeholder="Digite o nome do usuário."
+                        value={nome}
+                        onChange={(e) => setNome(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className={style.campo}>
+                    <label htmlFor="email">Email</label>
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder="Digite o e-mail do usuário."
+                        maxLength={100}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className={style.campo}>
+                    <label htmlFor="cargo">Cargo</label>
+                    <select
+                        id="cargo"
+                        value={cargo}
+                        maxLength={100}
+                        onChange={(e) => setCargo(e.target.value)}
+                        required
+                    >
+                        <option value="">Selecione o cargo</option>
+                        {cargos.map((c) => (<option key={c.id} value={c.id}>
+                            {c.nome}
+                        </option>
+                        ))}
+                    </select>
+                </div>
+
+                <div className={style.linha}>
                     <div className={style.campo}>
-                        <label htmlFor="nome">Nome</label>
+                        <label htmlFor="senha">Senha</label>
                         <input
-                            id="nome"
-                            type="text"
-                            maxLength={100}
-                            placeholder="Digite o nome do usuário."
-                            value={nome}
-                            onChange={(e) => setNome(e.target.value)}
+                            id="senha"
+                            type="password"
+                            placeholder="Digite a senha do usuário."
+                            value={senha}
+                            maxLength={50}
+                            onChange={(e) => setSenha(e.target.value)}
+                            required
                         />
                     </div>
 
                     <div className={style.campo}>
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="confirmarSenha">Confirmar senha</label>
                         <input
-                            id="email"
-                            type="text"
-                            maxLength={100}
-                            placeholder="Digite o email do usuário."
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            id="confirmarSenha"
+                            type="password"
+                            placeholder="Digite a senha novamente."
+                            value={confirmarSenha}
+                            maxLength={50}
+                            onChange={(e) => setConfirmarSenha(e.target.value)}
+                            required
                         />
                     </div>
+                </div>
+                {erro && <p className={style.erro}>{erro}</p>}
 
-                    <div className={style.campo}>
-                        <label htmlFor="cargo">Cargo</label>
-                        <select
-                            id="cargo"
-                            value={cargo}
-                            maxLength={100}
-                            onChange={(e) => setCargo(e.target.value)}
-                        >
-                            <option value="">Selecione o cargo</option>
-                            {cargos.map((c) => (<option key={c.id} value={c.id}>
-                                {c.nome}
-                            </option>
-                            ))}
-                        </select>
-                    </div>
+                <div className={style.acoes}>
+                    <Link to="/usuarios" className={style.botao_cancelar}>
+                        Cancelar
+                    </Link>
 
-                    <div className={style.linha}>
-                        <div className={style.campo}>
-                            <label htmlFor="senha">Senha</label>
-                            <input
-                                id="senha"
-                                type="password"
-                                placeholder="Digite a senha do usuário."
-                                value={senha}
-                                maxLength={50}
-                                onChange={(e) => setSenha(e.target.value)}
-                            />
-                        </div>
+                    <button type="submit" className={style.botao_salvar} disabled={salvando}>
+                        {salvando ? "Salvando..." : "Salvar"}
+                    </button>
+                </div>
+            </form>
 
-                        <div className={style.campo}>
-                            <label htmlFor="confirmarSenha">Confirmar senha</label>
-                            <input
-                                id="confirmarSenha"
-                                type="password"
-                                placeholder="Digite a senha novamente."
-                                value={confirmarSenha}
-                                maxLength={50}
-                                onChange={(e) => setConfirmarSenha(e.target.value)}
-                            />
-                        </div>
-                    </div>
-                    {erro && <p className={style.erro}>{erro}</p>}
+            <Modal show={mostrarModalSucesso} onHide={() => navigate("/usuarios")}centered>
+                <Modal.Header>
+                    <Modal.Title>Sucesso</Modal.Title>
+                </Modal.Header>
 
-                    <div className={style.acoes}>
-                        <Link to="/usuarios" className={style.botao_cancelar}>
-                            Cancelar
-                        </Link>
-
-                        <button type="submit" className={style.botao_salvar} disabled={salvando}>
-                            {salvando ? "Salvando..." : "Salvar"}
-                        </button>
-                    </div>
-                </form>
-
-                <Modal show={mostrarModalSucesso} onHide={() => navigate("/usuarios")}>
-                    <Modal.Header>
-                        <Modal.Title>Sucesso</Modal.Title>
-                    </Modal.Header>
-
-                    <Modal.Body>
-                        Usuário cadastrado com sucesso.
-                    </Modal.Body>
-                </Modal>
-            </Topbar>
-        </Sidebar>
-    )
+                <Modal.Body>
+                    Usuário cadastrado com sucesso.
+                </Modal.Body>
+            </Modal>
+        </div>
+    );
 }

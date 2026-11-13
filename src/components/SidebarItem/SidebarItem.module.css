@@ -1,14 +1,17 @@
-.sidebar_item {
- display: flex;
- align-items: center;
 
- gap: 12px;
- width: 100%;
- padding: 12px 15px;
- text-decoration: none;
- color: #cfcfcf;
- border-radius: 6px;
- transition: 0.2s;
+.sidebar_item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #cfcfcf;
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .sidebar_item:hover {
@@ -19,11 +22,16 @@
 .icone {
     display: flex;
     align-items: center;
+    justify-content: center;
     font-size: 22px;
+    min-width: 24px;
+    flex-shrink: 0;
 }
 
 .texto_link {
     display: flex;
+    align-items: center;
     font-size: 15px;
     font-weight: 500;
+    white-space: nowrap;
 }

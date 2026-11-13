@@ -1,28 +1,41 @@
+
 .topbar {
     width: 100%;
-    height: 102px; 
+    height: 70px;
+    min-height: 70px;
     background: rgb(26, 24, 24);
-    border-bottom: 2px solid silver;
+    border-bottom: 1px solid silver;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 40px;   
+    padding: 0 24px;
+    box-sizing: border-box;
 }
 
-.informacoesEmpresa span {
-    color: #d9d9d9;
+.botaoMenu {
+    background: transparent;
+    color: white;
+    border: none;
     font-size: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.botaoMenu:hover {
+    color: silver;
 }
 
 .usuarioArea {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 }
 
 .usuarioIcone {
     color: silver;
-    font-size: 34px;
+    font-size: 30px;
 }
 
 .usuarioNome {
@@ -34,19 +47,33 @@
     display: flex;
     align-items: center;
     gap: 8px;
-
     background: silver;
     color: #111;
-
-    padding: 10px 18px;
-
+    padding: 9px 15px;
     border: none;
     border-radius: 8px;
-
     cursor: pointer;
     font-weight: bold;
 }
 
 .botaoLogout:hover {
     background: white;
+}
+
+@media (max-width: 480px) {
+    .topbar {
+        padding: 0 12px;
+    }
+
+    .usuarioArea {
+        gap: 8px;
+    }
+
+    .usuarioNome {
+        font-size: 13px;
+    }
+
+    .botaoLogout {
+        padding: 8px 10px;
+    }
 }

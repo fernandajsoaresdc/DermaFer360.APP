@@ -1,8 +1,9 @@
 import style from "./Topbar.module.css";
-import { MdLogout, MdAccountCircle } from "react-icons/md";
+import { MdLogout, MdAccountCircle, MdMenu, MdClose } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-export function Topbar({ children }) {
+export function Topbar({ aoAlternarMenu, menuAberto }) {
+
     const navigate = useNavigate();
 
     const logout = () => {
@@ -14,12 +15,12 @@ export function Topbar({ children }) {
     const usuario = localStorage.getItem("usuario") || "Administrador Financeiro";
 
     return (
-        <>
-            <div className={style.topbar}>
-                <div className={style.informacoesEmpresa}>
+        
+            <header className={style.topbar}>
 
-                    <span>Departamento Financeiro</span>
-                </div>
+            <button className={style.botaoMenu} onClick={aoAlternarMenu} aria-label="Alternar menu lateral" aria-expanded={menuAberto}>
+                {menuAberto ? <MdClose /> : <MdMenu />}
+            </button>
 
                 <div className={style.usuarioArea}>
 
@@ -33,9 +34,8 @@ export function Topbar({ children }) {
                         Sair
                     </button>
                 </div>
-            </div>
 
-            {children}
-        </>
+            </header>
+
     );
 }

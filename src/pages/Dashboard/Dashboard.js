@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { Topbar } from "../../components/Topbar/Topbar";
 import RelatorioService from "../../services/RelatorioService";
 import { CardFinanceiro } from "../../components/CardFinanceiro/CardFinanceiro";
 import { GraficoFinanceiro } from "../../components/GraficoFinanceiro/GraficoFinanceiro";
@@ -76,18 +74,11 @@ export function Dashboard() {
 
     useEffect(() => {
         carregarDashboard();
-
-    }, []);
-
-    useEffect(() => {
-        carregarDashboard();
     }, [dataInicialFiltro, dataFinalFiltro]);
 
 
 
     return (
-        <Sidebar>
-            <Topbar >
                 <div className={style.dashboard}>
 
                     <div className={style.titulo}>
@@ -183,11 +174,8 @@ export function Dashboard() {
                             <UltimasReceitas receitas={ultimasReceitas} />
 
                         </div>
-
                     </div>
                 </div>
-            </Topbar>
-        </Sidebar>
     )
 }
 

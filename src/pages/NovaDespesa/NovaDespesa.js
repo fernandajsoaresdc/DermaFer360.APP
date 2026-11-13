@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
-import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { Topbar } from "../../components/Topbar/Topbar";
 import DespesaService from "../../services/DespesaService";
 import style from "./NovaDespesa.module.css";
 import { Modal } from "react-bootstrap";
@@ -60,95 +58,90 @@ export function NovaDespesa() {
     };
 
     return (
+        <div className={style.pagina_conteudo}>
+            <div className={style.pagina_cabecalho}>
+                <div className={style.titulo}>
+                    <h3>Nova Despesa</h3>
 
-        <Sidebar>
-
-            <Topbar>
-
-                <div className={style.pagina_conteudo}>
-                    <div className={style.pagina_cabecalho}>
-                        <h3>Nova Despesa</h3>
-
-                        <span>Cadastro de Despesa</span>
-
-                    </div>
-
-                    <Link to="/despesas" className={style.botao_voltar}>
-                        <MdArrowBack />
-                        Voltar
-                    </Link>
+                    <span>Cadastro de Despesa</span>
 
                 </div>
 
-                <form className={style.formulario} onSubmit={handleSalvar}>
+                <Link to="/despesas" className={style.botao_voltar}>
+                    <MdArrowBack />
+                    Voltar
+                </Link>
+            </div>
 
-                    <div className={style.campo}>
-                        <label htmlFor="descricao">Descricao</label>
-                        <input
-                            id="descricao"
-                            type="text"
-                            placeholder="Digite a descrição da despesa."
-                            value={descricao}
-                            maxLength={300}
-                            onChange={(e) => setDescricao(e.target.value)}
-                        />
-                    </div>
+            <form className={style.formulario} onSubmit={handleSalvar}>
 
-                    <div className={style.campo}>
-                        <label htmlFor="valor">Valor (R$)</label>
-                        <input
-                            id="valor"
-                            type="number"
-                            min="0"
-                            step="0.01"
-                            placeholder="0,00"
-                            value={valor}
-                            maxLength={100}
-                            onChange={(e) => setValor(e.target.value)}
-                        />
+                <div className={style.campo}>
+                    <label htmlFor="descricao">Descricao</label>
+                    <input
+                        id="descricao"
+                        type="text"
+                        placeholder="Digite a descrição da despesa."
+                        value={descricao}
+                        maxLength={300}
+                        onChange={(e) => setDescricao(e.target.value)}
+                    />
+                </div>
 
-                    </div>
+                <div className={style.campo}>
+                    <label htmlFor="valor">Valor (R$)</label>
+                    <input
+                        id="valor"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        placeholder="0,00"
+                        value={valor}
+                        maxLength={100}
+                        onChange={(e) => setValor(e.target.value)}
+                    />
 
-                    <div className={style.campo}>
-                        <label htmlFor="dataDespesa">Data da despesa</label>
-                        <input
-                            id="dataDespesa"
-                            type="date"
-                            value={dataDespesa}
-                            maxLength={100}
-                            onChange={(e) => setDataDespesa(e.target.value)}
-                        />
+                </div>
 
-                    </div>
+                <div className={style.campo}>
+                    <label htmlFor="dataDespesa">Data da despesa</label>
+                    <input
+                        id="dataDespesa"
+                        type="date"
+                        value={dataDespesa}
+                        maxLength={100}
+                        onChange={(e) => setDataDespesa(e.target.value)}
+                    />
 
-                    {erro && (<p className={style.erro}>{erro}</p>)}
+                </div>
 
-                    <div className={style.acoes}>
-                        <Link to="/despesas" className={style.botao_cancelar}>
-                            Cancelar
-                        </Link>
+                {erro && (<p className={style.erro}>{erro}</p>)}
+
+                <div className={style.acoes}>
+                    <Link to="/despesas" className={style.botao_cancelar}>
+                        Cancelar
+                    </Link>
 
 
-                        <button type="submit" className={style.botao_salvar} disabled={salvando}>
+                    <button type="submit" className={style.botao_salvar} disabled={salvando}>
 
-                            {salvando ? "Salvando..." : "Salvar"}
-                        </button>
-                    </div>
-                </form>
+                        {salvando ? "Salvando..." : "Salvar"}
+                    </button>
+                </div>
+            </form>
 
-                <Modal show={mostrarModalSucesso} onHide={() => navigate("/despesas")}
-                >
-                    <Modal.Header>
-                        <Modal.Title>
-                            Sucesso
-                        </Modal.Title>
-                    </Modal.Header>
+            <Modal show={mostrarModalSucesso} onHide={() => navigate("/despesas")}
+            >
+                <Modal.Header>
+                    <Modal.Title>
+                        Sucesso
+                    </Modal.Title>
+                </Modal.Header>
 
-                    <Modal.Body>
-                        Despesa cadastrada com sucesso.
-                    </Modal.Body>
-                </Modal>
-            </Topbar>
-        </Sidebar>
+                <Modal.Body>
+                    Despesa cadastrada com sucesso.
+                </Modal.Body>
+            </Modal>
+
+        </div>
     );
 }

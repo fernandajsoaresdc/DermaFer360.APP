@@ -1,19 +1,33 @@
+
+.pagina {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
 .pagina_conteudo {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 0;
 }
 
 .pagina_cabecalho h3 {
-    margin: 20px;
+    margin: 0 0 8px;
     font-size: 24px;
     color: #1f2937;
 }
 
 .pagina_cabecalho span {
+    display: block;
     font-size: 14px;
-    margin: 20px;
+    margin: 0;
     color: #6b7280;
 }
 
@@ -24,7 +38,7 @@
     border-radius: 6px;
     text-decoration: none;
     font-weight: 500;
-    margin: 20px;
+    white-space: nowrap;
 }
 
 .botao_novo:hover {
@@ -36,24 +50,28 @@
     align-items: center;
     gap: 8px;
     background-color: #fff;
-    border: 1px solid #393a3b;
+    border: 1px solid #d4d4d4;
     border-radius: 6px;
     padding: 8px 12px;
-    margin: 20px;
+    margin: 0;
+    width: 100%;
     max-width: 400px;
+    box-sizing: border-box;
 }
 
 .pesquisa input {
     border: none;
     outline: none;
     width: 100%;
+    min-width: 0;
     font-size: 14px;
 }
 
 .filtroStatus {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
-    margin: 0 20px 20px;
+    margin: 0;
 }
 
 .filtroStatus button {
@@ -80,15 +98,18 @@
 }
 
 .tabela {
+    width: 100%;
+    min-width: 0;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     overflow-x: auto;
-    margin: 0 20px 20px;
+    margin: 0;
 }
 
 .tabela table {
     width: 100%;
+    min-width: 650px;
     table-layout: fixed;
     border-collapse: collapse;
 }
@@ -96,32 +117,24 @@
 .tabela th,
 .tabela td {
     padding: 12px 16px;
+    text-align: left;
+    overflow-wrap: anywhere;
 }
 
 .tabela th:nth-child(1),
-.tabela td:nth-child(1) {
-    width: 30%;
-}
+.tabela td:nth-child(1) { width: 25%; }
 
 .tabela th:nth-child(2),
-.tabela td:nth-child(2) {
-    width: 25%;
-}
+.tabela td:nth-child(2) { width: 25%; }
 
 .tabela th:nth-child(3),
-.tabela td:nth-child(3) {
-    width: 20%;
-}
+.tabela td:nth-child(3) { width: 20%; }
 
 .tabela th:nth-child(4),
-.tabela td:nth-child(4) {
-    width: 10%;
-}
+.tabela td:nth-child(4) { width: 15%; }
 
 .tabela th:nth-child(5),
-.tabela td:nth-child(5) {
-    width: 15%;
-}
+.tabela td:nth-child(5) { width: 15%; }
 
 
 .botao_editar,
@@ -133,23 +146,39 @@
     width: 32px;
     height: 32px;
     border: none;
+    outline: none;
     border-radius: 6px;
     cursor: pointer;
     margin-right: 8px;
     font-size: 18px;
     text-decoration: none;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
 }
 
+/* Editar - Azul */
 .botao_editar {
     background-color: #dbeafe;
     color: #2563eb;
 }
 
-.botao_excluir {
-    background-color: #fee2e2;
-    color: rgb(192, 110, 110);
+.botao_editar:hover {
+    background-color: #bfdbfe;
+    color: #1d4ed8;
 }
 
+/* Excluir - Vermelho */
+.botao_excluir {
+    background-color: #fee2e2;
+    color: #c06e6e;
+}
+
+.botao_excluir:hover {
+    background-color: #fecaca;
+    color: #b91c1c;
+}
+
+/* Restaurar - Verde */
 .botao_restaurar {
     background-color: #dcfce7;
     color: #789c85;
@@ -157,4 +186,12 @@
 
 .botao_restaurar:hover {
     background-color: #bbf7d0;
+    color: #15803d;
+}
+
+.botao_editar svg,
+.botao_excluir svg,
+.botao_restaurar svg {
+    width: 18px;
+    height: 18px;
 }

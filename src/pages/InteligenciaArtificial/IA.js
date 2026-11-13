@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { MdSend, MdDeleteOutline, MdSmartToy } from "react-icons/md";
-import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { Topbar } from "../../components/Topbar/Topbar";
 import IAService from "../../services/IAService";
 import style from "./IA.module.css";
 
@@ -42,8 +40,7 @@ export function IA() {
 
     function pressionarEnter(event) {
         if (event.key === "Enter" && !event.shiftKey) {
-            event.preventDefault();
-            enviarPergunta();
+            event.preventDefault(); enviarPergunta();
         }
     }
 
@@ -54,10 +51,9 @@ export function IA() {
     return (
 
         <div className={style.pagina}>
-            <Sidebar />
+    
 
             <div className={style.conteudo}>
-                <Topbar />
 
                 <main className={style.principal}>
 

@@ -1,88 +1,100 @@
+
 .pagina {
-    min-height: 100vh;
-    background-color: #f4f4f4;
-    display: flex;
+    width: 100%;
+    min-height: 100%;
+    background-color: #f5f6fa;
+    box-sizing: border-box;
 }
 
 .conteudo {
-    flex: 1;
+    width: 100%;
     min-width: 0;
 }
 
 .principal {
-    padding: 30px;
-    padding-top: 90px;
-    min-height: 100vh;
+    width: 100%;
+    min-width: 0;
+    padding: 24px;
     box-sizing: border-box;
 }
 
+/* Cabeçalho */
 .cabecalho {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    gap: 16px;
+    margin-bottom: 24px;
 }
 
 .cabecalho h1 {
     margin: 0;
-    font-size: 28px;
-    color: #111111;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1f2937;
 }
 
 .cabecalho p {
-    margin-top: 8px;
-    color: #666666;
-    font-size: 15px;
+    margin: 6px 0 0;
+    color: #6b7280;
+    font-size: 14px;
 }
 
 .botaoLimpar {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 7px;
-    border: 1px solid #cccccc;
-    background-color: #ffffff;
-    color: #333333;
+    border: 1px solid #d1d5db;
+    background-color: #fff;
+    color: #374151;
     padding: 10px 15px;
     border-radius: 7px;
     cursor: pointer;
     font-size: 14px;
+    white-space: nowrap;
 }
 
 .botaoLimpar:hover {
-    background-color: #eeeeee;
+    background-color: #f3f4f6;
 }
 
+/* Área principal da conversa */
 .chat {
-    background-color: #ffffff;
-    border: 1px solid #dddddd;
+    width: 100%;
+    min-height: 600px;
+    height: calc(100vh - 245px);
+    min-height: 500px;
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
     border-radius: 12px;
-    min-height: calc(100vh - 190px);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
+/* Mensagens */
 .areaMensagens {
     flex: 1;
-    padding: 30px;
+    padding: 28px;
     overflow-y: auto;
-    min-height: 420px;
+    min-height: 0;
 }
 
 .mensagemInicial {
     max-width: 650px;
-    margin: 70px auto;
+    margin: 55px auto;
     text-align: center;
 }
 
 .iconeIA {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 20px;
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 18px;
     border-radius: 50%;
-    background-color: #111111;
-    color: #ffffff;
+    background-color: #171717;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,15 +103,16 @@
 
 .mensagemInicial h2 {
     margin: 0;
-    color: #222222;
-    font-size: 23px;
+    color: #1f2937;
+    font-size: 22px;
 }
 
 .mensagemInicial p {
-    color: #666666;
+    color: #6b7280;
     line-height: 1.6;
-    margin: 12px auto 25px;
+    margin: 12px auto 24px;
     max-width: 600px;
+    font-size: 14px;
 }
 
 .sugestoes {
@@ -110,19 +123,22 @@
 }
 
 .sugestoes button {
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
+    background-color: #fff;
+    border: 1px solid #d1d5db;
     border-radius: 20px;
     padding: 9px 15px;
     cursor: pointer;
-    color: #333333;
+    color: #374151;
+    font-size: 13px;
+    transition: background-color 0.2s, border-color 0.2s;
 }
 
 .sugestoes button:hover {
-    border-color: #111111;
-    background-color: #f5f5f5;
+    border-color: #6b7280;
+    background-color: #f3f4f6;
 }
 
+/* Alinhamento das mensagens */
 .linhaUsuario {
     display: flex;
     justify-content: flex-end;
@@ -137,29 +153,31 @@
 
 .mensagemUsuario {
     max-width: 70%;
-    background-color: #111111;
-    color: #ffffff;
+    background-color: #171717;
+    color: #fff;
     padding: 13px 17px;
     border-radius: 15px 15px 3px 15px;
     line-height: 1.5;
     white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
 
 .mensagemIA {
     max-width: 75%;
-    background-color: #f1f1f1;
-    color: #222222;
+    background-color: #f3f4f6;
+    color: #1f2937;
     padding: 15px 18px;
     border-radius: 15px 15px 15px 3px;
     line-height: 1.6;
     white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
 
 .mensagemErro {
     max-width: 75%;
     background-color: #fff1f1;
-    color: #b00020;
-    border: 1px solid #e0b5b5;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
     padding: 14px 18px;
     border-radius: 10px;
 }
@@ -168,20 +186,22 @@
     display: flex;
     align-items: center;
     gap: 7px;
-    font-weight: bold;
+    font-weight: 600;
     margin-bottom: 8px;
-    color: #111111;
+    color: #111827;
 }
 
 .tituloIA svg {
     font-size: 20px;
 }
 
+/* Campo de entrada */
 .areaEntrada {
     display: flex;
+    align-items: flex-end;
     gap: 12px;
     padding: 18px;
-    border-top: 1px solid #dddddd;
+    border-top: 1px solid #e5e7eb;
     background-color: #fafafa;
 }
 
@@ -190,7 +210,7 @@
     min-height: 50px;
     max-height: 120px;
     resize: vertical;
-    border: 1px solid #cccccc;
+    border: 1px solid #d1d5db;
     border-radius: 8px;
     padding: 14px;
     font-family: inherit;
@@ -200,7 +220,7 @@
 }
 
 .areaEntrada textarea:focus {
-    border-color: #777777;
+    border-color: #2563eb;
 }
 
 .botaoEnviar {
@@ -209,8 +229,8 @@
     min-width: 105px;
     border: none;
     border-radius: 8px;
-    background-color: #111111;
-    color: #ffffff;
+    background-color: #171717;
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -220,14 +240,15 @@
 }
 
 .botaoEnviar:hover {
-    background-color: #333333;
+    background-color: #333;
 }
 
 .botaoEnviar:disabled {
-    background-color: #aaaaaa;
+    background-color: #aaa;
     cursor: not-allowed;
 }
 
+/* Animação de carregamento */
 .carregando {
     display: flex;
     gap: 5px;
@@ -237,7 +258,7 @@
 .carregando span {
     width: 7px;
     height: 7px;
-    background-color: #666666;
+    background-color: #666;
     border-radius: 50%;
     animation: pulsar 1.2s infinite;
 }
@@ -250,93 +271,43 @@
     animation-delay: 0.4s;
 }
 
-
-.aviso {
-    padding: 10px 18px;
-    text-align: center;
-    font-size: 11px;
-    color: #888888;
-    background-color: #fafafa;
-}
-
-.filtroDatas {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    gap: 16px;
-    padding: 12px 20px 8px;
-    background-color: #ffffff;
-}
-
-.filtroDatas div {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: 220px;
-}
-
-.filtroDatas label {
-    color: #555555;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.filtroDatas input {
-    width: 100%;
-    box-sizing: border-box;
-    height: 44px;
-    padding: 10px 12px;
-    border: 1px solid #cccccc;
-    border-radius: 8px;
-    background-color: #ffffff;
-    color: #333333;
-    font-family: inherit;
-    font-size: 14px;
-}
-
-.filtroDatas input:focus {
-    outline: none;
-    border-color: #999999;
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
-}
-
-@media (max-width: 600px) {
-    .filtroDatas {
-        flex-wrap: wrap;
-        padding: 12px;
-    }
-
-    .filtroDatas div {
-        width: 100%;
-        max-width: 260px;
-    }
-}
-
 @keyframes pulsar {
-
-    0%,
-    100% {
+    0%, 100% {
         opacity: 0.3;
     }
-
     50% {
         opacity: 1;
     }
 }
 
-@media (max-width: 900px) {
-    .conteudo {
-        width: 100%;
-    }
+/* Aviso */
+.aviso {
+    padding: 10px 18px;
+    text-align: center;
+    font-size: 11px;
+    color: #888;
+    background-color: #fafafa;
+    border-top: 1px solid #eee;
+}
 
+/* Responsividade */
+@media (max-width: 768px) {
     .principal {
-        padding: 80px 15px 20px;
+        padding: 16px;
     }
 
     .cabecalho {
         align-items: flex-start;
-        gap: 15px;
         flex-direction: column;
+    }
+
+    .chat {
+        height: calc(100vh - 230px);
+        min-height: 450px;
+    }
+
+    .areaMensagens {
+        padding: 16px;
     }
 
     .mensagemUsuario,
@@ -346,12 +317,9 @@
 }
 
 @media (max-width: 600px) {
-    .areaMensagens {
-        padding: 15px;
-    }
-
     .areaEntrada {
         flex-direction: column;
+        align-items: stretch;
     }
 
     .botaoEnviar {
@@ -359,6 +327,10 @@
     }
 
     .mensagemInicial {
-        margin: 40px auto;
+        margin: 35px auto;
+    }
+
+    .sugestoes {
+        flex-direction: column;
     }
 }

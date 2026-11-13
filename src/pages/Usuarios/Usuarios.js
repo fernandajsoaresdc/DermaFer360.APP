@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { MdSearch, MdEdit, MdDelete, MdPerson, MdRestore } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import style from "./Usuarios.module.css";
-import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { Topbar } from "../../components/Topbar/Topbar";
 import UsuarioService from "../../services/UsuarioService";
 import { Modal, Button } from "react-bootstrap";
 
@@ -16,7 +14,7 @@ const Cargos = {
 };
 
 export function Usuarios() {
-    const navgate = useNavigate();
+    const navigate = useNavigate();
 
     const [usuarios, setUsuarios] = useState([]);
     const [mostrarModal, setMostrarModal] = useState(false);
@@ -105,189 +103,183 @@ export function Usuarios() {
 
 
     return (
-        <Sidebar>
-            <Topbar>
-                <div className={style.pagina_conteudo}>
-                    <div className={style.pagina_cabecalho}>
-                        <h3>Usuários</h3>
+        <div className={style.pagina_conteudo}>
+            <div className={style.pagina_cabecalho}>
+                <h3>Usuários</h3>
 
-                        <span>Gerenciamento de Usuários</span>
+                <span>Gerenciamento de Usuários</span>
 
-                    </div>
+            </div>
 
-                    <Link to='/usuario/novo' className={style.botao_novo}>+ Novo Usuário</Link>
+            <Link to='/usuario/novo' className={style.botao_novo}>+ Novo Usuário</Link>
 
-                </div>
+            <div className={style.pesquisa}>
 
+                <MdSearch />
 
-                <div className={style.pesquisa}>
+                <input
+                    type="text"
+                    placeholder="Buscar por nome ou e-mail"
+                    value={busca}
+                    onChange={(e) => setBusca(e.target.value)}
+                    maxLength={100}
+                />
 
-                    <MdSearch />
+            </div>
 
-                    <input
-                        type="text"
-                        placeholder="Buscar por nome ou e-mail"
-                        value={busca}
-                        onChange={(e) => setBusca(e.target.value)}
-                        maxLength={100}
-                    />
-
-                </div>
-
-                <div className={style.filtroStatus}>
-                    <button
-                        className={filtroStatus === "todos" ? style.filtroAtivo : ""} onClick={() => setFiltroStatus("todos")}>
-                        Todos
-                    </button>
+            <div className={style.filtroStatus}>
+                <button
+                    className={filtroStatus === "todos" ? style.filtroAtivo : ""} onClick={() => setFiltroStatus("todos")}>
+                    Todos
+                </button>
 
 
-                    <button
-                        className={filtroStatus === "ativos" ? style.filtroAtivo : ""} onClick={() => setFiltroStatus("ativos")}>
-                        Ativos
-                    </button>
+                <button
+                    className={filtroStatus === "ativos" ? style.filtroAtivo : ""} onClick={() => setFiltroStatus("ativos")}>
+                    Ativos
+                </button>
 
-                    <button
-                        className={filtroStatus === "inativos" ? style.filtroAtivo : ""} onClick={() => setFiltroStatus("inativos")}>
-                        Inativos
-                    </button>
-                </div>
-                
+                <button
+                    className={filtroStatus === "inativos" ? style.filtroAtivo : ""} onClick={() => setFiltroStatus("inativos")}>
+                    Inativos
+                </button>
+            </div>
 
-                <div className={style.tabela}>
 
-                    <table>
+            <div className={style.tabela}>
 
-                        <thead>
+                <table>
 
-                            <tr>
+                    <thead>
 
-                                <th>Nome</th>
+                        <tr>
 
-                                <th>E-mail</th>
+                            <th>Nome</th>
 
-                                <th>Cargos</th>
+                            <th>E-mail</th>
 
-                                <th>Status</th>
+                            <th>Cargos</th>
 
-                                <th>Ações</th>
+                            <th>Status</th>
+
+                            <th>Ações</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {usuariosFiltrados.map((usuario) => (
+
+                            <tr key={usuario.id}>
+
+                                <td>
+                                    {usuario.nome}
+                                </td>
+
+                                <td>
+                                    {usuario.email}
+                                </td>
+
+                                <td>
+                                    {Cargos[usuario.cargo] ?? "-"}
+                                </td>
+
+                                <td>
+
+                                    {usuario.ativo ? "Ativo" : "Inativo"}
+
+                                </td>
+
+                                <td>
+
+                                    <Link to={`/usuario/editar/${usuario.id}`} className={style.botao_editar}
+                                        title="Editar"
+                                        aria-label="Editar usuário"
+                                    >
+                                        <MdEdit />
+                                    </Link>
+
+
+                                    {usuario.ativo ? (
+
+                                        <button
+                                            className={style.botao_excluir} onClick={() => handleClickDeletar(usuario)}
+                                            title="Excluir"
+                                            aria-label="Excluir usuário"
+                                        >
+                                            <MdDelete />
+                                        </button>
+
+                                    ) : (
+
+                                        <button className={style.botao_restaurar} onClick={() => handleRestaurar(usuario)}
+                                            title="Restaurar"
+                                            aria-label="Restaurar usuário"
+                                        >
+                                            <MdRestore />
+                                        </button>
+
+                                    )}
+
+                                </td>
 
                             </tr>
 
-                        </thead>
+                        ))}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <Modal show={mostrarModal} onHide={handleFecharModal}>
+                <Modal.Header closeButton>
+
+                    <Modal.Title>Confirmar</Modal.Title>
+
+                </Modal.Header>
 
 
-                        <tbody>
+                <Modal.Body>
 
-                            {usuariosFiltrados.map((usuario) => (
+                    Tem certeza que deseja desativar o usuário{" "} {usuarioSelecionado?.nome}?
 
-                                <tr key={usuario.id}>
-
-                                    <td>
-                                        {usuario.nome}
-                                    </td>
-
-                                    <td>
-                                        {usuario.email}
-                                    </td>
-
-                                    <td>
-                                        {Cargos[usuario.cargo] ?? "-"}
-                                    </td>
-
-                                    <td>
-
-                                        {usuario.ativo ? "Ativo" : "Inativo"}
-
-                                    </td>
-
-                                    <td>
-
-                                        <Link to={`/usuario/editar/${usuario.id}`} className={style.botao_editar}
-                                            title="Editar"
-                                            aria-label="Editar usuário"
-                                        >
-                                            <MdEdit />
-                                        </Link>
+                </Modal.Body>
 
 
-                                        {usuario.ativo ? (
+                <Modal.Footer>
 
-                                            <button
-                                                className={style.botao_excluir} onClick={() => handleClickDeletar(usuario)}
-                                                title="Excluir"
-                                                aria-label="Excluir usuário"
-                                            >
-                                                <MdDelete />
-                                            </button>
+                    <Button variant="secondary" onClick={handleFecharModal}>
+                        Cancelar
+                    </Button>
 
-                                        ) : (
+                    <Button variant="danger" onClick={handleDeletar}>
+                        Desativar
+                    </Button>
 
-                                            <button className={style.botao_restaurar} onClick={() => handleRestaurar(usuario)}
-                                                title="Restaurar"
-                                                aria-label="Restaurar usuário"
-                                            >
-                                                <MdRestore />
-                                            </button>
+                </Modal.Footer>
 
-                                        )}
+            </Modal>
 
-                                    </td>
+            <Modal show={mostrarModalSucesso} onHide={(handleFecharModalSucesso) => setMostrarModalSucesso(false)}>
 
-                                </tr>
+                <Modal.Header>
 
-                            ))}
+                    <Modal.Title>Sucesso</Modal.Title>
 
-                        </tbody>
+                </Modal.Header>
 
-                    </table>
+                <Modal.Body>
 
-                </div>
+                    Usuário desativado com sucesso.
 
-                <Modal show={mostrarModal} onHide={handleFecharModal}>
-                    <Modal.Header closeButton>
+                </Modal.Body>
 
-                        <Modal.Title>Confirmar</Modal.Title>
-
-                    </Modal.Header>
-
-
-                    <Modal.Body>
-
-                        Tem certeza que deseja desativar o usuário{" "} {usuarioSelecionado?.nome}?
-
-                    </Modal.Body>
-
-
-                    <Modal.Footer>
-
-                        <Button variant="secondary" onClick={handleFecharModal}>
-                            Cancelar
-                        </Button>
-
-                        <Button variant="danger" onClick={handleDeletar}>
-                            Desativar
-                        </Button>
-
-                    </Modal.Footer>
-
-                </Modal>
-
-                <Modal show={mostrarModalSucesso} onHide={(handleFecharModalSucesso) => setMostrarModalSucesso(false)}>
-
-                    <Modal.Header>
-
-                        <Modal.Title>Sucesso</Modal.Title>
-
-                    </Modal.Header>
-
-                    <Modal.Body>
-
-                        Usuário desativado com sucesso.
-
-                    </Modal.Body>
-
-                </Modal>
-            </Topbar >
-        </Sidebar >
+            </Modal>
+        </div>
     );
 }

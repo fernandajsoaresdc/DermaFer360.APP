@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import style from "./RelatorioFinanceiro.module.css";
-import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { Topbar } from "../../components/Topbar/Topbar";
 import ReceitaService from "../../services/ReceitaService";
 import DespesaService from "../../services/DespesaService";
 import ProdutoService from "../../services/ProdutoService";
@@ -51,6 +49,7 @@ export function RelatorioFinanceiro() {
             }
             catch (error) {
                 console.error("Erro ao carregar o relatório.", error);
+                setErro("Não foi possível carregar os dados do relatório.");
             }
             finally {
                 setCarregando(false);
@@ -111,148 +110,123 @@ export function RelatorioFinanceiro() {
     };
 
     return (
-        <Sidebar>
-            <Topbar>
 
-                <div className={style.pagina_conteudo}>
-                    <div className={style.pagina_cabecalho}>
-                        <h3>Relatório Financeiro</h3>
+        <div className={style.pagina_conteudo}>
+            <div className={style.pagina_cabecalho}>
+                <div className={style.titulo}>
+                    <h3>Relatório Financeiro</h3>
 
-                        <span>
-                            Relatório de receitas e despesas
-                        </span>
-                    </div>
-                </div>
-
-                <div className={style.filtros}>
-
-                    <div className={style.campo}>
-                        <label htmlFor="dataInicial">
-                            Data inicial
-                        </label>
-
-                        <input
-                            id="dataInicial"
-                            type="date"
-                            value={dataInicial}
-                            onChange={(e) => setDataInicial(e.target.value)}
-                        />
-                    </div>
-
-                    <div className={style.campo}>
-                        <label htmlFor="dataFinal">
-                            Data final
-                        </label>
-
-                        <input
-                            id="dataFinal"
-                            type="date"
-                            value={dataFinal}
-                            onChange={(e) => setDataFinal(e.target.value)}
-                        />
-                    </div>
-
-                    <button className={style.botao_limpar} onClick={limparFiltro}
-                    >
-                        Limpar filtro
-                    </button>
+                    <span>Relatório de receitas e despesas</span>
 
                 </div>
+            </div>
 
-                {erro && ( <p className={style.erro}>{erro}</p>)}
+            <div className={style.filtros}>
 
-                {carregando && (<p className={style.aviso}>Carregando relatório...</p>)}
+                <div className={style.campo}>
+                    <label htmlFor="dataInicial">Data inicial</label>
 
-                <div className={style.cards}>
-
-                    <div
-                        className={`${style.card} ${style.receita}`}
-                    >
-                        <span>Total de receitas</span>
-
-                        <strong>
-                            {formatarMoeda(totalReceitas)}
-                        </strong>
-                    </div>
-
-                    <div className={`${style.card} ${style.despesa}`}
-                    >
-                        <span>Total de despesas</span>
-
-                        <strong>
-                            {formatarMoeda(totalDespesas)}
-                        </strong>
-                    </div>
-
-                    <div className={`${style.card} ${saldo >= 0 ? style.saldo_positivo : style.saldo_negativo}`}
-                    >
-                        <span>Saldo</span>
-
-                        <strong>
-                            {formatarMoeda(saldo)}
-                        </strong>
-                    </div>
-
+                    <input
+                        id="dataInicial"
+                        type="date"
+                        value={dataInicial}
+                        onChange={(e) => setDataInicial(e.target.value)}
+                    />
                 </div>
 
-                <div className={style.tabela}>
+                <div className={style.campo}>
+                    <label htmlFor="dataFinal">Data final</label>
 
-                    <table>
+                    <input
+                        id="dataFinal"
+                        type="date"
+                        value={dataFinal}
+                        min={dataInicial || undefined}
+                        onChange={(e) => setDataFinal(e.target.value)}
+                    />
+                </div>
 
-                        <thead>
-                            <tr>
-                                <th>Data</th>
-                                <th>Tipo</th>
-                                <th>Descrição</th>
-                                <th className={style.numero}>Valor
-                                </th>
+                <button className={style.botao_limpar} onClick={limparFiltro}>
+                    Limpar filtro
+                </button>
+            </div>
+
+            {erro && (<p className={style.erro}>{erro}</p>)}
+
+            {carregando && (<p className={style.aviso}>Carregando relatório...</p>)}
+
+            <div className={style.cards}>
+
+                <div
+                    className={`${style.card} ${style.receita}`}
+                >
+                    <span>Total de receitas</span>
+
+                    <strong>{formatarMoeda(totalReceitas)}</strong>
+                </div>
+
+                <div className={`${style.card} ${style.despesa}`}
+                >
+                    <span>Total de despesas</span>
+
+                    <strong>{formatarMoeda(totalDespesas)}</strong>
+                </div>
+
+                <div className={`${style.card} ${saldo >= 0 ? style.saldo_positivo : style.saldo_negativo}`}
+                >
+                    <span>Saldo</span>
+
+                    <strong>{formatarMoeda(saldo)}</strong>
+                </div>
+            </div>
+
+            <div className={style.tabela}>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Tipo</th>
+                            <th>Descrição</th>
+                            <th className={style.numero}>Valor
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {movimentacoes.map((item) => (
+                            <tr key={item.chave}>
+
+                                <td>{formatarData(item.data)}</td>
+
+                                <td>
+                                    <span className={item.tipo === "Receita" ? style.etiqueta_receita : style.etiqueta_despesa}>
+                                        {item.tipo}
+                                    </span>
+                                </td>
+
+                                <td>{item.descricao}</td>
+
+                                <td className={style.numero}> {formatarMoeda(item.valor)}</td>
+
                             </tr>
-                        </thead>
+                        ))}
 
-                        <tbody>
+                        {!carregando && movimentacoes.length === 0 && (
+                            <tr>
+                                <td colSpan={4} className={style.vazio}>
+                                    Nenhuma movimentação no período.
+                                </td>
+                            </tr>
+                        )}
 
-                            {movimentacoes.map((item) => (
-                                <tr key={item.chave}>
+                    </tbody>
 
-                                    <td>
-                                        {formatarData(item.data)}
-                                    </td>
+                </table>
 
-                                    <td>
-                                        <span className={ item.tipo === "Receita" ? style.etiqueta_receita: style.etiqueta_despesa }
-                                        >
-                                            {item.tipo}
-                                        </span>
-                                    </td>
-
-                                    <td>
-                                        {item.descricao}
-                                    </td>
-
-                                    <td className={style.numero}> {formatarMoeda(item.valor)}</td>
-
-                                </tr>
-                            ))}
-
-                            {!carregando && movimentacoes.length === 0 && (
-                                    <tr>
-                                        <td
-                                            colSpan={4}
-                                            className={style.vazio}
-                                        >
-                                            Nenhuma movimentação no período.
-                                        </td>
-                                    </tr>
-                                )}
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </Topbar>
-        </Sidebar>
+            </div>
+        </div>
     );
 }
 

@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { MdSearch, MdEdit, MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import style from "./Receitas.module.css";
-import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { Topbar } from "../../components/Topbar/Topbar";
 import ReceitaService from "../../services/ReceitaService";
 import ProdutoService from "../../services/ProdutoService";
 import { Modal, Button } from "react-bootstrap";
@@ -12,11 +10,18 @@ const formatarMoeda = (valor) =>
     Number(valor ?? 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
 const formatarData = (valor) => {
+
     if (!valor) {
         return "";
     }
 
-    const [ano, mes, dia] = valor.slice(0, 10).split("-");
+    const data = String(valor).slice(0, 10);
+    const [ano, mes, dia] = data.split("-");
+
+    if (!ano || !mes || !dia) {
+        return "";
+    }
+
     return `${dia}/${mes}/${ano}`;
 };
 
@@ -92,124 +97,124 @@ export function Receitas() {
     });
 
     return (
-        <Sidebar>
-            <Topbar>
-                <div className={style.pagina_conteudo}>
-                    <div className={style.pagina_cabecalho}>
-                        <h3>Receitas</h3>
 
-                        <span>Gerenciamento de Receitas</span>
-                    </div>
+        <div className={style.pagina_conteudo}>
+            <div className={style.pagina_cabecalho}>
+                <div className={style.titulo}>
+                <h3>Receitas</h3>
 
-                    <Link to="/receita/novo" className={style.botao_novo}>+ Nova Receita</Link>
-                </div>
+                <span>Gerenciamento de Receitas</span>
+            </div>
 
-                <div className={style.pesquisa}>
-                    <MdSearch />
+            <Link to="/receita/novo" className={style.botao_novo}>+ Nova Receita</Link>
+            </div>
 
-                    <input
-                        type="text"
-                        placeholder="Buscar por produto"
-                        value={busca}
-                        onChange={(e) => setBusca(e.target.value)}
-                        maxLength={100}
-                    />
-                </div>
 
-                {carregando && <p className={style.aviso}>Carregando receitas...</p>}
+            <div className={style.pesquisa}>
+                <MdSearch />
 
-                <div className={style.tabela}>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Produto</th>
+                <input
+                    type="text"
+                    placeholder="Buscar por produto"
+                    value={busca}
+                    onChange={(e) => setBusca(e.target.value)}
+                    maxLength={100}
+                />
+            </div>
 
-                                <th>Data</th>
+            {carregando && <p className={style.aviso}>Carregando receitas...</p>}
 
-                                <th className={style.numero}>Quantidade</th>
+            <div className={style.tabela}>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
 
-                                <th className={style.numero}>Preço unitário</th>
+                            <th>Data</th>
 
-                                <th className={style.numero}>Total</th>
-                                
-                                <th>Ações</th>
+                            <th className={style.numero}>Quantidade</th>
+
+                            <th className={style.numero}>Preço unitário</th>
+
+                            <th className={style.numero}>Total</th>
+
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {receitasFiltradas.map((receita) => (
+                            <tr key={receita.id}>
+                                <td>{nomeProduto(receita.produtoId)}</td>
+                                <td>{formatarData(receita.dataReceita)}</td>
+                                <td className={style.numero}>{receita.quantidade}</td>
+                                <td className={style.numero}>{formatarMoeda(receita.precoUnitario)}</td>
+                                <td className={style.numero}>
+                                    {formatarMoeda(receita.quantidade * receita.precoUnitario)}
+                                </td>
+
+                                <td>
+                                    <Link
+                                        to={`/receita/editar/${receita.id}`}
+                                        className={style.botao_editar}
+                                        title="Editar"
+                                        aria-label="Editar receita"
+                                    >
+                                        <MdEdit />
+                                    </Link>
+
+                                    <button
+                                        className={style.botao_excluir}
+                                        onClick={() => handleClickExcluir(receita)}
+                                        title="Excluir"
+                                        aria-label="Excluir receita"
+                                    >
+                                        <MdDelete />
+                                    </button>
+                                </td>
                             </tr>
-                        </thead>
+                        ))}
 
-                        <tbody>
-                            {receitasFiltradas.map((receita) => (
-                                <tr key={receita.id}>
-                                    <td>{nomeProduto(receita.produtoId)}</td>
-                                    <td>{formatarData(receita.dataReceita)}</td>
-                                    <td className={style.numero}>{receita.quantidade}</td>
-                                    <td className={style.numero}>{formatarMoeda(receita.precoUnitario)}</td>
-                                    <td className={style.numero}>
-                                        {formatarMoeda(receita.quantidade * receita.precoUnitario)}
-                                    </td>
+                        {!carregando && receitasFiltradas.length === 0 && (
+                            <tr>
+                                <td colSpan={6} className={style.vazio}>
+                                    Nenhuma receita encontrada.
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
 
-                                    <td>
-                                        <Link
-                                            to={`/receita/editar/${receita.id}`}
-                                            className={style.botao_editar}
-                                            title="Editar"
-                                            aria-label="Editar receita"
-                                        >
-                                            <MdEdit />
-                                        </Link>
+            <Modal show={mostrarModal} onHide={handleFecharModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirmar</Modal.Title>
+                </Modal.Header>
 
-                                        <button
-                                            className={style.botao_excluir}
-                                            onClick={() => handleClickExcluir(receita)}
-                                            title="Excluir"
-                                            aria-label="Excluir receita"
-                                        >
-                                            <MdDelete />
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
+                <Modal.Body>
+                    Tem certeza que deseja excluir a receita de {receitaSelecionada && nomeProduto(receitaSelecionada.produtoId)}?
+                </Modal.Body>
 
-                            {!carregando && receitasFiltradas.length === 0 && (
-                                <tr>
-                                    <td colSpan={6} className={style.vazio}>
-                                        Nenhuma receita encontrada.
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
-                </div>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleFecharModal}>
+                        Cancelar
+                    </Button>
 
-                <Modal show={mostrarModal} onHide={handleFecharModal}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Confirmar</Modal.Title>
-                    </Modal.Header>
+                    <Button variant="danger" onClick={handleExcluir}>
+                        Excluir
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
-                    <Modal.Body>
-                        Tem certeza que deseja excluir a receita de {receitaSelecionada && nomeProduto(receitaSelecionada.produtoId)}?
-                    </Modal.Body>
+            <Modal show={mostrarModalSucesso} onHide={() => setMostrarModalSucesso(false)}>
+                <Modal.Header>
+                    <Modal.Title>Sucesso</Modal.Title>
+                </Modal.Header>
 
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleFecharModal}>
-                            Cancelar
-                        </Button>
-
-                        <Button variant="danger" onClick={handleExcluir}>
-                            Excluir
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-
-                <Modal show={mostrarModalSucesso} onHide={() => setMostrarModalSucesso(false)}>
-                    <Modal.Header>
-                        <Modal.Title>Sucesso</Modal.Title>
-                    </Modal.Header>
-
-                    <Modal.Body>
-                        Receita excluída com sucesso.
-                    </Modal.Body>
-                </Modal>
-            </Topbar>
-        </Sidebar>
+                <Modal.Body>
+                    Receita excluída com sucesso.
+                </Modal.Body>
+            </Modal>
+        </div>
     );
 }

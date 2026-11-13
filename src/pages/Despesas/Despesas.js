@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { MdSearch, MdEdit, MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import style from "./Despesa.module.css";
-import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { Topbar } from "../../components/Topbar/Topbar";
 import DespesaService from "../../services/DespesaService";
 import { Modal, Button } from "react-bootstrap";
 
@@ -35,10 +33,10 @@ export function Despesas() {
             setCarregando(true);
 
             const listaDespesas = await DespesaService.listarAsync();
-           
+
 
             setDespesas(Array.isArray(listaDespesas) ? listaDespesas : []);
-           
+
         }
         catch (error) {
             console.error("Erro ao carregar despesas.", error);
@@ -90,117 +88,115 @@ export function Despesas() {
     });
 
     return (
-        <Sidebar>
-            <Topbar>
-                <div className={style.pagina_conteudo}>
-                    <div className={style.pagina_cabecalho}>
-                        <h3>Despesas</h3>
+        <div className={style.pagina_conteudo}>
+            <div className={style.pagina_cabecalho}>
+                <div className={style.titulo}>
+                    <h3>Despesas</h3>
 
-                        <span>Gerenciamento de Despesas</span>
-                    </div>
-
-                    <Link to="/despesa/novo" className={style.botao_novo}>+ Nova Despesa</Link>
+                    <span>Gerenciamento de Despesas</span>
                 </div>
 
-                <div className={style.pesquisa}>
-                    <MdSearch />
+                <Link to="/despesa/novo" className={style.botao_novo}>+ Nova Despesa</Link>
+            </div>
 
-                    <input
-                        type="text"
-                        placeholder="Buscar por despesa"
-                        value={busca}
-                        onChange={(e) => setBusca(e.target.value)}
-                        maxLength={100}
-                    />
-                </div>
+            <div className={style.pesquisa}>
+                <MdSearch />
 
-                {carregando && <p className={style.aviso}>Carregando despesas...</p>}
+                <input
+                    type="text"
+                    placeholder="Buscar por despesa"
+                    value={busca}
+                    onChange={(e) => setBusca(e.target.value)}
+                    maxLength={100}
+                />
+            </div>
 
-                <div className={style.tabela}>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Descrição</th>
+            {carregando && <p className={style.aviso}>Carregando despesas...</p>}
 
-                                <th>Data</th>
+            <div className={style.tabela}>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
 
-                                <th className={style.numero}>Valor</th>
+                            <th>Data</th>
 
-                                <th>Ações</th>
+                            <th className={style.numero}>Valor</th>
+
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {despesasFiltradas.map((despesa) => (
+                            <tr key={despesa.id}>
+                                <td>{despesa.descricao}</td>
+                                <td>{formatarData(despesa.dataDespesa)}</td>
+                                <td className={style.numero}>{formatarMoeda(despesa.valor)}</td>
+
+                                <td>
+                                    <Link
+                                        to={`/despesa/editar/${despesa.id}`}
+                                        className={style.botao_editar}
+                                        title="Editar"
+                                        aria-label="Editar despesa"
+                                    >
+                                        <MdEdit />
+                                    </Link>
+
+                                    <button
+                                        className={style.botao_excluir}
+                                        onClick={() => handleClickExcluir(despesa)}
+                                        title="Excluir"
+                                        aria-label="Excluir despesa"
+                                    >
+                                        <MdDelete />
+                                    </button>
+                                </td>
                             </tr>
-                        </thead>
+                        ))}
 
-                        <tbody>
-                            {despesasFiltradas.map((despesa) => (
-                                <tr key={despesa.id}>
-                                    <td>{despesa.descricao}</td>
-                                    <td>{formatarData(despesa.dataDespesa)}</td>
-                                    <td className={style.numero}>{formatarMoeda(despesa.valor)}</td>
+                        {!carregando && despesasFiltradas.length === 0 && (
+                            <tr>
+                                <td colSpan={4} className={style.vazio}>
+                                    Nenhuma despesa encontrada.
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
 
-                                    <td>
-                                        <Link
-                                            to={`/despesa/editar/${despesa.id}`}
-                                            className={style.botao_editar}
-                                            title="Editar"
-                                            aria-label="Editar despesa"
-                                        >
-                                            <MdEdit />
-                                        </Link>
+            <Modal show={mostrarModal} onHide={handleFecharModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirmar</Modal.Title>
+                </Modal.Header>
 
-                                        <button
-                                            className={style.botao_excluir}
-                                            onClick={() => handleClickExcluir(despesa)}
-                                            title="Excluir"
-                                            aria-label="Excluir despesa"
-                                        >
-                                            <MdDelete />
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
+                <Modal.Body>
+                    Tem certeza que deseja excluir a despesa de {despesaSelecionada && `"${despesaSelecionada.descricao}"`}?
+                </Modal.Body>
 
-                            {!carregando && despesasFiltradas.length === 0 && (
-                                <tr>
-                                    <td colSpan={4} className={style.vazio}>
-                                        Nenhuma despesa encontrada.
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
-                </div>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleFecharModal}>
+                        Cancelar
+                    </Button>
 
-                <Modal show={mostrarModal} onHide={handleFecharModal}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Confirmar</Modal.Title>
-                    </Modal.Header>
+                    <Button variant="danger" onClick={handleExcluir}>
+                        Excluir
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
-                    <Modal.Body>
-                        Tem certeza que deseja excluir a despesa de {despesaSelecionada && `"${despesaSelecionada.descricao}"`}?
-                    </Modal.Body>
+            <Modal show={mostrarModalSucesso} onHide={() => setMostrarModalSucesso(false)}>
+                <Modal.Header>
+                    <Modal.Title>Sucesso</Modal.Title>
+                </Modal.Header>
 
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleFecharModal}>
-                            Cancelar
-                        </Button>
-
-                        <Button variant="danger" onClick={handleExcluir}>
-                            Excluir
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-
-                <Modal show={mostrarModalSucesso} onHide={() => setMostrarModalSucesso(false)}>
-                    <Modal.Header>
-                        <Modal.Title>Sucesso</Modal.Title>
-                    </Modal.Header>
-
-                    <Modal.Body>
-                        Despesa excluída com sucesso.
-                    </Modal.Body>
-                </Modal>
-            </Topbar>
-        </Sidebar>
+                <Modal.Body>
+                    Despesa excluída com sucesso.
+                </Modal.Body>
+            </Modal>
+        </div>
     );
 }
 

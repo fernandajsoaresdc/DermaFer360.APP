@@ -1,15 +1,40 @@
-.layout{
-    display:flex;
-    min-height:100vh;
-    background:#F5F6FA;
+
+.layout {
+    min-height: 100vh;
+    background: #F5F6FA;
 }
 
-.conteudo{
-    flex:1;
-    display:flex;
-    flex-direction:column;
+.conteudo {
+    width: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: margin-left 0.25s ease;
 }
 
-.pagina{
-    padding:30px;
+.conteudoAberto {
+    margin-left: 240px;
+}
+
+.conteudoRecolhido {
+    margin-left: 72px;
+}
+
+.pagina {
+    flex: 1;
+    min-width: 0;
+    padding: 24px;
+    box-sizing: border-box;
+    background: #F5F6FA;
+}
+
+@media (max-width: 768px) {
+    .conteudoAberto,
+    .conteudoRecolhido {
+        margin-left: 0;
+    }
+
+    .pagina {
+        padding: 16px;
+    }
 }

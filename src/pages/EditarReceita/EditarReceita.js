@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 import style from "./EditarReceita.module.css";
-import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { Topbar } from "../../components/Topbar/Topbar";
 import ReceitaService from "../../services/ReceitaService";
 import ProdutoService from "../../services/ProdutoService";
 import { Modal } from "react-bootstrap";
@@ -30,7 +28,7 @@ export function EditarReceita() {
         const carregarDados = async () => {
 
             try {
-            
+
                 const lista = await ProdutoService.listarAsync();
                 setProdutos(Array.isArray(lista) ? lista : []);
 
@@ -44,12 +42,13 @@ export function EditarReceita() {
                 setProdutoId(String(receita.produtoId));
                 setQuantidade(String(receita.quantidade));
                 setPrecoUnitario(String(receita.precoUnitario));
-                setDataReceita(receita.dataReceita ? receita.dataReceita.substring(0, 10): "");
+                setDataReceita(receita.dataReceita ? receita.dataReceita.substring(0, 10) : "");
 
             }
             catch (error) {
 
                 console.error("Erro ao carregar receita.", error);
+                setNaoEncontrado(true);
             }
             finally {
 
@@ -106,48 +105,47 @@ export function EditarReceita() {
     };
 
     return (
-        <Sidebar>
-            <Topbar>
-                <div className={style.pagina_conteudo}>
-                    <div className={style.pagina_cabecalho}>
-                        <h3>Editar Receita</h3>
 
-                        <span>Atualização de dados da Receita</span>
-                    </div>
+        <div className={style.pagina_conteudo}>
+            <div className={style.pagina_cabecalho}>
+                <h3>Editar Receita</h3>
 
-                    <Link to="/receitas" className={style.botao_voltar}>
-                        <MdArrowBack />
-                        Voltar
-                    </Link>
-                </div>
+                <span>Atualização de dados da Receita</span>
+            </div>
 
-                <form className={style.formulario} onSubmit={handleSalvar}>
-                    <div className={style.campo}>
-                        <label htmlFor="produtoId">Produto</label>
-                        <select
+            <Link to="/receitas" className={style.botao_voltar}>
+                <MdArrowBack />
+                Voltar
+            </Link>
+
+
+            <form className={style.formulario} onSubmit={handleSalvar}>
+                <div className={style.campo}>
+                    <label htmlFor="produtoId">Produto</label>
+                    <select
                         id="produtoId"
                         type="number"
                         value={produtoId}
                         onChange={(e) => setProdutoId(e.target.value)}
-                        >
-                            <options value="">
-                                Selecione um produto
-                            </options>
+                    >
+                        <option value="">
+                            Selecione um produto
+                        </option>
 
-                            {produtos.map((produto) => (
-                                <option
+                        {produtos.map((produto) => (
+                            <option
                                 key={produto.id}
                                 value={produto.id}
-                                >
-                                    {produto.nome}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
+                            >
+                                {produto.nome}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
-                    <div className={style.campo}>
-                        <label htmlFor="quantidade">Quantidade</label>
-                        <input
+                <div className={style.campo}>
+                    <label htmlFor="quantidade">Quantidade</label>
+                    <input
                         id="quantidade"
                         type="number"
                         min="1"
@@ -155,12 +153,12 @@ export function EditarReceita() {
                         value={quantidade}
                         maxLength={100}
                         onChange={(e) => setQuantidade(e.target.value)}
-                        />
-                    </div>
+                    />
+                </div>
 
-                    <div className={style.campo}>
-                        <label htmlFor="precoUnitario">Preço Unitário (R$)</label>
-                        <input
+                <div className={style.campo}>
+                    <label htmlFor="precoUnitario">Preço Unitário (R$)</label>
+                    <input
                         id="precoUnitario"
                         type="number"
                         min="0"
@@ -168,46 +166,44 @@ export function EditarReceita() {
                         value={precoUnitario}
                         maxLength={100}
                         onChange={(e) => setPrecoUnitario(e.target.value)}
-                        />
-                    </div>
+                    />
+                </div>
 
-                    <div className={style.campo}>
-                        <label htmlFor="dataReceita">Data da receita</label>
-                        <input
+                <div className={style.campo}>
+                    <label htmlFor="dataReceita">Data da receita</label>
+                    <input
                         id="dataReceita"
                         type="date"
                         value={dataReceita}
                         maxLength={100}
                         onChange={(e) => setDataReceita(e.target.value)}
-                        />
-                    </div>
+                    />
+                </div>
 
-                     {erro && <p className={style.erro}>{erro}</p>}
+                {erro && <p className={style.erro}>{erro}</p>}
 
-                      <div className={style.acoes}>
-                        <Link to="/receitas" className={style.botao_cancelar}>
-                            Cancelar
-                        </Link>
+                <div className={style.acoes}>
+                    <Link to="/receitas" className={style.botao_cancelar}>
+                        Cancelar
+                    </Link>
 
-                        <button type="submit" className={style.botao_salvar} disabled={salvando}>
-                            {salvando ? "Salvando..." : "Salvar"}
-                        </button>
-                    </div>
-                </form>
+                    <button type="submit" className={style.botao_salvar} disabled={salvando}>
+                        {salvando ? "Salvando..." : "Salvar"}
+                    </button>
+                </div>
+            </form>
 
-                <Modal show={mostrarModalSucesso} onHide={() => navigate("/receitas")}>
-                    <Modal.Header>
-                        <Modal.Title>Sucesso</Modal.Title>
-                    </Modal.Header>
+            <Modal show={mostrarModalSucesso} onHide={() => navigate("/receitas")}>
+                <Modal.Header>
+                    <Modal.Title>Sucesso</Modal.Title>
+                </Modal.Header>
 
-                    <Modal.Body>
-                        Receita atualizada com sucesso.
-                    </Modal.Body>
-                </Modal>   
-            </Topbar>
-        </Sidebar>
+                <Modal.Body>
+                    Receita atualizada com sucesso.
+                </Modal.Body>
+            </Modal>
+        </div>
     )
 }
 
 
-       

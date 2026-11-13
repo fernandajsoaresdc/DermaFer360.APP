@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 import style from "./EditarDespesa.module.css";
-import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { Topbar } from "../../components/Topbar/Topbar";
 import DespesaService from "../../services/DespesaService";
 import { Modal } from "react-bootstrap";
 
@@ -112,83 +110,81 @@ export function EditarDespesa() {
     };
 
     return (
-        <Sidebar>
-            <Topbar>
-                <div className={style.pagina_conteudo}>
-                    <div className={style.pagina_cabecalho}>
-                        <h3>Editar Despesa</h3>
 
-                        <span>Atualização de dados da Despesa</span>
-                    </div>
+        <div className={style.pagina_conteudo}>
+            <div className={style.pagina_cabecalho}>
+                <h3>Editar Despesa</h3>
 
-                    <Link to="/despesas" className={style.botao_voltar}>
-                        <MdArrowBack />
-                        Voltar
-                    </Link>
+                <span>Atualização de dados da Despesa</span>
+            </div>
+
+            <Link to="/despesas" className={style.botao_voltar}>
+                <MdArrowBack />
+                Voltar
+            </Link>
+
+
+            <form className={style.formulario} onSubmit={handleSalvar}>
+                <div className={style.campo}>
+                    <label htmlFor="descricao">Descricao</label>
+                    <input
+                        id="descricao"
+                        type="text"
+                        placeholder="Digite a descrição da despesa"
+                        value={descricao}
+                        maxLength={300}
+                        onChange={(e) => setDescricao(e.target.value)}
+                    >
+                    </input>
                 </div>
 
-                <form className={style.formulario} onSubmit={handleSalvar}>
-                    <div className={style.campo}>
-                        <label htmlFor="descricao">Descricao</label>
-                        <input
-                            id="descricao"
-                            type="text"
-                            placeholder="Digite a descrição da despesa"
-                            value={descricao}
-                            maxLength={300}
-                            onChange={(e) => setDescricao(e.target.value)}
-                        >
-                        </input>
-                    </div>
+                <div className={style.campo}>
+                    <label htmlFor="valor">Valor (R$)</label>
+                    <input
+                        id="valor"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        value={valor}
+                        maxLength={100}
+                        onChange={(e) => setValor(e.target.value)}
+                    />
+                </div>
 
-                    <div className={style.campo}>
-                        <label htmlFor="valor">Valor (R$)</label>
-                        <input
-                            id="valor"
-                            type="number"
-                            min="0"
-                            step="0.01"
-                            value={valor}
-                            maxLength={100}
-                            onChange={(e) => setValor(e.target.value)}
-                        />
-                    </div>
+                <div className={style.campo}>
+                    <label htmlFor="dataDespesa">Data da despesa</label>
+                    <input
+                        id="dataDespesa"
+                        type="date"
+                        value={dataDespesa}
+                        maxLength={100}
+                        onChange={(e) => setDataDespesa(e.target.value)}
+                    />
+                </div>
 
-                    <div className={style.campo}>
-                        <label htmlFor="dataDespesa">Data da despesa</label>
-                        <input
-                            id="dataDespesa"
-                            type="date"
-                            value={dataDespesa}
-                            maxLength={100}
-                            onChange={(e) => setDataDespesa(e.target.value)}
-                        />
-                    </div>
+                {erro && <p className={style.erro}>{erro}</p>}
 
-                    {erro && <p className={style.erro}>{erro}</p>}
+                <div className={style.acoes}>
+                    <Link to="/despesas" className={style.botao_cancelar}>
+                        Cancelar
+                    </Link>
 
-                    <div className={style.acoes}>
-                        <Link to="/despesas" className={style.botao_cancelar}>
-                            Cancelar
-                        </Link>
+                    <button type="submit" className={style.botao_salvar} disabled={salvando}>
+                        {salvando ? "Salvando..." : "Salvar"}
+                    </button>
+                </div>
+            </form>
 
-                        <button type="submit" className={style.botao_salvar} disabled={salvando}>
-                            {salvando ? "Salvando..." : "Salvar"}
-                        </button>
-                    </div>
-                </form>
+            <Modal show={mostrarModalSucesso} onHide={() => navigate("/despesas")}>
+                <Modal.Header>
+                    <Modal.Title>Sucesso</Modal.Title>
+                </Modal.Header>
 
-                <Modal show={mostrarModalSucesso} onHide={() => navigate("/despesas")}>
-                    <Modal.Header>
-                        <Modal.Title>Sucesso</Modal.Title>
-                    </Modal.Header>
-
-                    <Modal.Body>
-                        Despesa atualizada com sucesso.
-                    </Modal.Body>
-                </Modal>
-            </Topbar>
-        </Sidebar>
+                <Modal.Body>
+                    Despesa atualizada com sucesso.
+                </Modal.Body>
+            </Modal>
+        </div>
     );
 }
 

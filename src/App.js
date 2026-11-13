@@ -16,35 +16,36 @@ import { EditarDespesa } from "./pages/EditarDespesa/EditarDespesa";
 import { RelatorioFinanceiro } from "./pages/RelatorioFinanceiro/RelatorioFinanceiro";
 import { IA } from "./pages/InteligenciaArtificial/IA";
 import { RotaPrivada } from "./components/RotaPrivada/RotaPrivada";
+import { Layout } from "./components/Layout/Layout";
 
 
 function App() {
-
     return (
-
         <BrowserRouter>
-
             <Routes>
-                <Route path= "/" element={<Login />} />
-                <Route path="/dashboard" element={<RotaPrivada><Dashboard /></RotaPrivada>} />
-                <Route path="/usuarios" element={<RotaPrivada><Usuarios/></RotaPrivada>}/>
-                <Route path="/usuario/novo" element={<RotaPrivada><NovoUsuario/></RotaPrivada>}/>
-                <Route path="/usuario/editar/:id" element={<RotaPrivada><EditarUsuario/></RotaPrivada>}/>
-                <Route path="/produtos" element={<RotaPrivada><Produtos/></RotaPrivada>}/>
-                <Route path="/produto/novo" element={<RotaPrivada><NovoProduto/></RotaPrivada>}/>
-                <Route path="/produto/editar/:id"element={<RotaPrivada><EditarProduto/></RotaPrivada>}/>
-                <Route path="/receitas" element={<RotaPrivada><Receitas/></RotaPrivada>}/>
-                <Route path="/receita/novo" element={<RotaPrivada><NovaReceita/></RotaPrivada>}/>
-                <Route path="/receita/editar/:id" element={<RotaPrivada><EditarReceita/></RotaPrivada>}/>
-                <Route path="/despesas" element={<RotaPrivada><Despesas/></RotaPrivada>}/>
-                <Route path="/despesa/novo" element={<RotaPrivada><NovaDespesa/></RotaPrivada>}/>
-                <Route path="/despesa/editar/:id" element={<RotaPrivada><EditarDespesa/></RotaPrivada>}/>
-                <Route path="/relatorio-financeiro" element={<RotaPrivada><RelatorioFinanceiro/></RotaPrivada>}/>
-                <Route path="/ia" element={<RotaPrivada><IA/></RotaPrivada>}/>
+
+                <Route path="/" element={<Login />} />
+                <Route element={<RotaPrivada><Layout /></RotaPrivada>}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/usuarios" element={<Usuarios />} />
+                <Route path="/usuario/novo" element={<NovoUsuario />} />
+                <Route path="/usuario/editar/:id" element={<EditarUsuario />} />
+                <Route path="/produtos" element={<Produtos />} />
+                <Route path="/produto/novo" element={<NovoProduto />} />
+                <Route path="/produto/editar/:id" element={<EditarProduto />} />
+                <Route path="/receitas" element={<Receitas />} />
+                <Route path="/receita/novo" element={<NovaReceita />} />
+                <Route path="/receita/editar/:id" element={<EditarReceita />} />
+                <Route path="/despesas" element={<Despesas />} />
+                <Route path="/despesa/novo" element={<NovaDespesa />} />
+                <Route path="/despesa/editar/:id" element={<EditarDespesa />} />
+                <Route path="/relatorio-financeiro" element={<RelatorioFinanceiro />} />
+                <Route path="/ia" element={<IA />} />
+
+                </Route>
+
             </Routes>
-
         </BrowserRouter>
-
     );
 }
 

@@ -2,8 +2,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 import style from "./NovoProduto.module.css";
-import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { Topbar } from "../../components/Topbar/Topbar";
 import ProdutoService from "../../services/ProdutoService";
 import { Modal } from "react-bootstrap";
 
@@ -24,12 +22,12 @@ export function NovoProduto() {
         e.preventDefault();
         setErro("");
 
-        if (!nome || precoCusto === "" || precoVenda === "") {
-            setErro("Preencha nome, preço de custo e preço de venda.");
+        if (!nome || precoCusto === "" || precoVenda === "" || estoque === "") {
+            setErro("Preencha nome, preços e estoque.");
             return;
         }
 
-        if (Number(precoCusto) < 0 || Number(precoVenda) < 0 || Number(estoque) < 0){
+        if (Number(precoCusto) < 0 || Number(precoVenda) < 0 || Number(estoque) < 0) {
             setErro("Os preços não podem ser negativos.");
             return;
         }
@@ -60,114 +58,113 @@ export function NovoProduto() {
     };
 
     return (
-        <Sidebar>
-            <Topbar>
-                <div className={style.pagina_conteudo}>
-                    <div className={style.pagina_cabecalho}>
-                        <h3>Novo Produto</h3>
+        <div className={style.pagina_conteudo}>
+            <div className={style.pagina_cabecalho}>
+                <div className={style.titulo}>
+                    <h3>Novo Produto</h3>
 
-                        <span>Cadastro de Produto</span>
-                    </div>
-
-                    <Link to="/produtos" className={style.botao_voltar}>
-                        <MdArrowBack />
-                        Voltar
-                    </Link>
+                    <span>Cadastro de Produto</span>
                 </div>
 
-                <form className={style.formulario} onSubmit={handleSalvar}>
+                <Link to="/produtos" className={style.botao_voltar}>
+                    <MdArrowBack />
+                    Voltar
+                </Link>
+            </div>
+
+
+            <form className={style.formulario} onSubmit={handleSalvar}>
+                <div className={style.campo}>
+                    <label htmlFor="nome">Nome</label>
+                    <input
+                        id="nome"
+                        type="text"
+                        maxLength={100}
+                        placeholder="Digite o nome do produto."
+                        value={nome}
+                        onChange={(e) => setNome(e.target.value)}
+                    />
+                </div>
+
+                <div className={style.campo}>
+                    <label htmlFor="descricao">Descrição</label>
+                    <textarea
+                        id="descricao"
+                        rows={3}
+                        placeholder="Digite a descrição do produto."
+                        value={descricao}
+                        maxLength={300}
+                        onChange={(e) => setDescricao(e.target.value)}
+                    />
+                </div>
+
+                <div className={style.linha}>
                     <div className={style.campo}>
-                        <label htmlFor="nome">Nome</label>
+                        <label htmlFor="precoCusto">Preço de custo (R$)</label>
                         <input
-                            id="nome"
-                            type="text"
+                            id="precoCusto"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            placeholder="0,00"
+                            value={precoCusto}
                             maxLength={100}
-                            placeholder="Digite o nome do produto."
-                            value={nome}
-                            onChange={(e) => setNome(e.target.value)}
+                            onChange={(e) => setPrecoCusto(e.target.value)}
                         />
                     </div>
 
                     <div className={style.campo}>
-                        <label htmlFor="descricao">Descrição</label>
-                        <textarea
-                            id="descricao"
-                            rows={3}
-                            placeholder="Digite a descrição do produto."
-                            value={descricao}
-                            maxLength={300}
-                            onChange={(e) => setDescricao(e.target.value)}
+                        <label htmlFor="precoVenda">Preço de venda (R$)</label>
+                        <input
+                            id="precoVenda"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            placeholder="0,00"
+                            value={precoVenda}
+                            maxLength={100}
+                            onChange={(e) => setPrecoVenda(e.target.value)}
                         />
                     </div>
 
-                    <div className={style.linha}>
-                        <div className={style.campo}>
-                            <label htmlFor="precoCusto">Preço de custo (R$)</label>
-                            <input
-                                id="precoCusto"
-                                type="number"
-                                min="0"
-                                step="0.01"
-                                placeholder="0,00"
-                                value={precoCusto}
-                                maxLength={100}
-                                onChange={(e) => setPrecoCusto(e.target.value)}
-                            />
-                        </div>
-
-                        <div className={style.campo}>
-                            <label htmlFor="precoVenda">Preço de venda (R$)</label>
-                            <input
-                                id="precoVenda"
-                                type="number"
-                                min="0"
-                                step="0.01"
-                                placeholder="0,00"
-                                value={precoVenda}
-                                maxLength={100}
-                                onChange={(e) => setPrecoVenda(e.target.value)}
-                            />
-                        </div>
-
-                        <div className={style.campo}>
-                            <label htmlFor="estoque">Estoque (unidades)</label>
-                            <input
-                                id="estoque"
-                                type="number"
-                                min="0"
-                                step="1"
-                                placeholder="0"
-                                value={estoque}
-                                maxLength={100}
-                                onChange={(e) => setEstoque(e.target.value)}
-                            />
-                        </div>
+                    <div className={style.campo}>
+                        <label htmlFor="estoque">Estoque (unidades)</label>
+                        <input
+                            id="estoque"
+                            type="number"
+                            min="0"
+                            step="1"
+                            placeholder="0"
+                            value={estoque}
+                            maxLength={100}
+                            onChange={(e) => setEstoque(e.target.value)}
+                        />
                     </div>
+                </div>
 
-                    {erro && <p className={style.erro}>{erro}</p>}
+                {erro && <p className={style.erro}>{erro}</p>}
 
-                    <div className={style.acoes}>
-                        <Link to="/produtos" className={style.botao_cancelar}>
-                            Cancelar
-                        </Link>
+                <div className={style.acoes}>
+                    <Link to="/produtos" className={style.botao_cancelar}>
+                        Cancelar
+                    </Link>
 
-                        <button type="submit" className={style.botao_salvar} disabled={salvando}>
-                            {salvando ? "Salvando..." : "Salvar"}
-                        </button>
-                    </div>
-                </form>
+                    <button type="submit" className={style.botao_salvar} disabled={salvando}>
+                        {salvando ? "Salvando..." : "Salvar"}
+                    </button>
+                </div>
+            </form>
 
-                <Modal show={mostrarModalSucesso} onHide={() => navigate("/produtos")}>
-                    <Modal.Header>
-                        <Modal.Title>Sucesso</Modal.Title>
-                    </Modal.Header>
+            <Modal show={mostrarModalSucesso} onHide={() => navigate("/produtos")}>
+                <Modal.Header>
+                    <Modal.Title>Sucesso</Modal.Title>
+                </Modal.Header>
 
-                    <Modal.Body>
-                        Produto cadastrado com sucesso.
-                    </Modal.Body>
-                </Modal>
-            </Topbar>
-        </Sidebar>
+                <Modal.Body>
+                    Produto cadastrado com sucesso.
+                </Modal.Body>
+            </Modal>
+        </div>
     );
 }
 
